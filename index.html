@@ -1,0 +1,1064 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>EstateHub &middot; Premium Real Estate Agency &amp; Property Listings</title>
+     <link rel="icon" type="image/png" href="assets/fav.png">
+    <meta name="description" content="EstateHub — Premium real estate agency. Buy, rent, sell, or find your dream home with trusted agents.">
+
+       <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'Georgia', 'serif'],
+                        heading: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                        body: ['"Inter"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root, html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #0F1F3D;
+            --color-secondary-text: #78716C;
+            --color-gold: #C9A961;
+            --color-gold-light: #E0C28A;
+            --color-border: #E8E2D6;
+            --color-hover: #FAF7F2;
+            --color-card-bg: #FFFFFF;
+            --nav-bg-scrolled: #0F1F3D;
+        }
+        html[data-theme='dark'] {
+            --color-background: #0A1524;
+            --color-primary-text: #F5EFE4;
+            --color-secondary-text: #A8A29E;
+            --color-gold: #E0C28A;
+            --color-gold-light: #C9A961;
+            --color-border: #1E3A5F;
+            --color-hover: #132339;
+            --color-card-bg: #132339;
+            --nav-bg-scrolled: #000000;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            margin: 0; padding: 0;
+        }
+
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-gold { color: var(--color-gold); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .bg-card { background-color: var(--color-card-bg); }
+        .border-border { border-color: var(--color-border); }
+
+        .bg-navy-gradient { background: linear-gradient(135deg, #0F1F3D 0%, #1E3A5F 100%); }
+        .bg-gold-gradient { background: linear-gradient(135deg, #C9A961 0%, #E0C28A 100%); }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #C9A961 0%, #E0C28A 50%, #C9A961 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .font-display { font-family: 'Playfair Display', Georgia, serif; }
+        .font-heading { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+        /* NAVBAR */
+        .navbar-fixed {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: transparent;
+            transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+        }
+        .navbar-fixed.scrolled {
+            padding: 12px 0;
+            background: var(--nav-bg-scrolled);
+            box-shadow: 0 8px 30px rgba(15, 31, 61, 0.2);
+            backdrop-filter: blur(8px);
+        }
+        .navbar-fixed.scrolled .nav-logo-text { color: #FFFFFF; }
+        .navbar-fixed.scrolled .nav-link { color: rgba(255,255,255,0.85); }
+        .navbar-fixed.scrolled .nav-link:hover,
+        .navbar-fixed.scrolled .nav-link.active { color: #E0C28A !important; }
+        .navbar-fixed.scrolled .icon-btn {
+            background: rgba(255,255,255,0.08);
+            color: #FFFFFF;
+            border-color: rgba(255,255,255,0.15);
+        }
+        .navbar-fixed.scrolled .login-btn {
+            color: #FFFFFF !important;
+            border-color: rgba(255,255,255,0.3) !important;
+        }
+        .navbar-fixed .nav-link { color: rgba(255,255,255,0.9); }
+        .navbar-fixed .nav-logo-text { color: #FFFFFF; }
+        .navbar-fixed .icon-btn {
+            background: rgba(255,255,255,0.10);
+            color: #FFFFFF;
+            border-color: rgba(255,255,255,0.15);
+        }
+        .navbar-fixed .icon-btn:hover,
+        .navbar-fixed.scrolled .icon-btn:hover {
+            background: linear-gradient(135deg,#C9A961,#E0C28A);
+            color: #0F1F3D;
+            border-color: transparent;
+        }
+        .navbar-fixed .login-btn {
+            color: #FFFFFF;
+            border-color: rgba(255,255,255,0.3);
+        }
+        .navbar-fixed .login-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #E0C28A;
+            color: #E0C28A;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            padding: 0.4rem 0;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #C9A961, #E0C28A);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+        .nav-link.active, .nav-link:hover { color: #E0C28A !important; }
+
+        .dropdown-wrapper { position: relative; }
+        .dropdown-wrapper::before {
+            content: ''; position: absolute;
+            left: 0; right: 0; height: 20px;
+            bottom: 100%; z-index: 100; background: transparent;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px -12px rgba(15, 31, 61, 0.25);
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0; visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            padding: 0.5rem 0;
+        }
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateY(0); display: block;
+        }
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        .dropdown-menu a i {
+            color: var(--color-gold);
+            width: 16px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-gold);
+            padding-left: 1.75rem;
+        }
+
+        .book-btn {
+            background: linear-gradient(135deg, #C9A961, #E0C28A);
+            color: #0F1F3D;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .book-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        .book-btn:hover::before { left: 100%; }
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.55);
+        }
+
+        .icon-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            background: transparent;
+        }
+        .icon-btn:hover { transform: scale(1.08); }
+
+        .login-btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid;
+            transition: all 0.25s ease;
+        }
+
+        body::-webkit-scrollbar { width: 8px; }
+        body::-webkit-scrollbar-track { background: var(--color-hover); }
+        body::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #C9A961, #E0C28A);
+            border-radius: 8px;
+        }
+
+        .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+        @media (min-width: 768px) {
+            .section-pad { padding-top: 6rem; padding-bottom: 6rem; }
+        }
+
+        [dir="rtl"] .dropdown-menu { left: auto; right: 0; }
+        [dir="rtl"] .nav-link::after { left: auto; right: 0; }
+        [dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+
+        /* Property Cards */
+        .property-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .property-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--color-gold);
+            box-shadow: 0 25px 50px -20px rgba(15, 31, 61, 0.25);
+        }
+        .property-card img { transition: transform 0.7s ease; }
+        .property-card:hover img { transform: scale(1.06); }
+
+        /* Feature Tile */
+        .feature-tile {
+            padding: 1.75rem;
+            border-radius: 1.25rem;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            transition: all 0.4s ease;
+        }
+        .feature-tile:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -18px rgba(201, 169, 97, 0.3);
+        }
+
+        /* Marquee */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 40s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Search Box */
+        .search-box {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 9999px;
+            padding: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 20px 50px -20px rgba(15, 31, 61, 0.3);
+            transition: all 0.3s ease;
+        }
+        .search-box:focus-within {
+            border-color: var(--color-gold);
+            box-shadow: 0 25px 60px -20px rgba(201, 169, 97, 0.4);
+        }
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 0.6rem 0.75rem;
+            font-size: 0.875rem;
+            color: var(--color-primary-text);
+            font-family: 'Inter', sans-serif;
+            min-width: 0;
+        }
+        .search-input::placeholder { color: var(--color-secondary-text); }
+
+        /* Chart bar */
+        .trend-bar {
+            border-radius: 0.75rem 0.75rem 0 0;
+            background: linear-gradient(to top, #0F1F3D, #C9A961);
+            transition: all 0.4s ease;
+        }
+        .trend-bar:hover {
+            background: linear-gradient(to top, #C9A961, #E0C28A);
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-background">
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar-fixed" id="mainNav">
+        <nav class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between gap-3">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0">
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shadow-lg" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
+                        <i class="fas fa-building text-[#C9A961] text-base sm:text-lg"></i>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="nav-logo-text font-display text-xl sm:text-2xl md:text-3xl tracking-tight font-bold">Estate<span style="color:#C9A961;">Hub</span></span>
+                        <span class="text-[8px] sm:text-[9px] tracking-[0.28em] uppercase font-semibold" style="color:rgba(255,255,255,0.6);">Real Estate • Property Portal</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center justify-center flex-1 gap-5 mx-4">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center font-semibold">
+                            Home
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html"><i class="fas fa-home"></i> Home 1</a>
+                            <a href="home2.html"><i class="fas fa-house-chimney"></i> Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Service</a>
+                    <a href="rent.html" class="nav-link">Rent</a>
+                    <a href="buy.html" class="nav-link">Buy</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center">
+                            Dashboard
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="sub-admin.html"><i class="fas fa-user-shield"></i> Sub Admin</a>
+                            <a href="customer-dashboard.html"><i class="fas fa-user"></i> Customer</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <button id="lang-icon" class="icon-btn hidden xl:inline-flex" title="Toggle RTL" aria-label="Toggle RTL">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                    </button>
+                    <button id="theme-toggle" class="icon-btn hidden xl:inline-flex" title="Toggle Theme" aria-label="Toggle Theme">
+                        <svg class="w-4 h-4 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-4 h-4 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <a href="signup.html" class="hidden xl:inline-flex book-btn px-5 py-2.5 rounded-full text-xs">
+                        <i class="fas fa-user-plus mr-1.5"></i> Sign Up
+                    </a>
+                    <button id="mobile-menu-open" class="xl:hidden icon-btn" aria-label="Open menu">
+                        <i class="fas fa-bars text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= MOBILE DRAWER ================= -->
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-[110] pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawer-content" class="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-background shadow-2xl transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto">
+            <div class="p-5">
+                <div class="flex justify-between items-center pb-4 border-b border-border mb-4">
+                    <a href="index.html" class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
+                            <i class="fas fa-building text-[#C9A961] text-sm"></i>
+                        </div>
+                        <span class="font-display text-lg font-bold text-primary-text">Estate<span style="color:#C9A961;">Hub</span></span>
+                    </a>
+                    <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-hover transition">
+                        <i class="fas fa-times text-primary-text"></i>
+                    </button>
+                </div>
+                <nav class="flex flex-col space-y-1">
+                    <div>
+                        <button class="w-full flex justify-between items-center py-3 px-3 rounded-xl font-semibold text-[#C9A961] hover:bg-hover transition" id="mobile-home-toggle">
+                            Home
+                            <svg class="w-4 h-4 transform transition-transform duration-200" id="home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="mobile-home-menu" class="hidden pl-3 flex flex-col space-y-1 mt-1">
+                            <a href="index.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Home 1</a>
+                            <a href="home2.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">About</a>
+                    <a href="services.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Service</a>
+                    <a href="rent.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Rent</a>
+                    <a href="buy.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Buy</a>
+                    <a href="contact.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Contact</a>
+
+                    <div>
+                        <button class="w-full flex justify-between items-center py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition" id="mobile-dashboard-toggle">
+                            Dashboard
+                            <svg class="w-4 h-4 transform transition-transform duration-200" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="mobile-dashboard-menu" class="hidden pl-3 flex flex-col space-y-1 mt-1">
+                            <a href="sub-admin.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Sub Admin</a>
+                            <a href="customer-dashboard.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Customer</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="mt-6 pt-6 border-t border-border flex flex-col gap-3">
+                    <a href="signup.html" class="block w-full book-btn text-center py-3.5 rounded-xl font-bold text-sm">
+                        <i class="fas fa-user-plus mr-2"></i> Sign Up
+                    </a>
+                </div>
+                <div class="mt-5 flex justify-around items-center pt-5 border-t border-border">
+                    <button id="mobile-lang-toggle" class="flex flex-col items-center text-primary-text hover:text-[#C9A961] p-2 transition">
+                        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                        <span class="text-[10px] uppercase tracking-wider">RTL</span>
+                    </button>
+                    <button id="mobile-theme-toggle" class="flex flex-col items-center text-primary-text hover:text-[#C9A961] p-2 transition">
+                        <svg class="w-5 h-5 mb-1 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <svg class="w-5 h-5 mb-1 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        <span class="text-[10px] uppercase tracking-wider">Theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SECTION 1 • HERO
+    ============================================================ -->
+    <section class="relative min-h-[100vh] sm:min-h-[95vh] flex items-center overflow-hidden bg-navy-gradient pt-[120px] sm:pt-[110px]">
+        <div class="absolute inset-0">
+            <img src="assets/indexb.jpg"
+                 alt="Luxury modern home"
+                 class="w-full h-full object-cover opacity-35">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#0F1F3D]/90 via-[#0F1F3D]/70 to-[#1E3A5F]/85"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-[#C9A961]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6">
+                    <span class="w-2 h-2 rounded-full bg-[#C9A961] animate-pulse"></span>
+                    <span class="text-white text-[9px] sm:text-xs font-semibold tracking-widest uppercase">Trusted by 12,000+ Home Buyers</span>
+                </div>
+
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.05] sm:leading-[0.95] tracking-tight mb-5 sm:mb-6 font-bold">
+                    Find Your <br>
+                    <span class="text-gradient-gold italic">Dream Home</span>
+                    <br>
+                    With Confidence.
+                </h1>
+
+                <p class="text-gray-300 text-sm sm:text-base lg:text-lg xl:text-xl max-w-2xl leading-relaxed mb-8 sm:mb-10 font-light">
+                    From cozy apartments to luxury estates — EstateHub connects you with trusted agents and verified listings across the country.
+                </p>
+
+                <!-- Search Box -->
+                <div class="search-box max-w-2xl mb-8">
+                    <i class="fas fa-search text-[#C9A961] ml-2 sm:ml-3 text-sm"></i>
+                    <input type="text" class="search-input" placeholder="Search city or property...">
+                    <button class="book-btn px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm whitespace-nowrap">
+                        <i class="fas fa-search mr-1.5 hidden sm:inline"></i> Search
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl">
+                    <div>
+                        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">2.5K<span class="text-[#C9A961]">+</span></p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Active Listings</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">150<span class="text-[#C9A961]">+</span></p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Expert Agents</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">4.9<span class="text-[#C9A961]">★</span></p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Client Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center text-white/60 animate-bounce">
+            <span class="text-[10px] uppercase tracking-widest mb-1">Scroll</span>
+            <i class="fas fa-chevron-down text-sm"></i>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <section class="bg-gold-gradient py-3 sm:py-4 overflow-hidden">
+        <div class="marquee-track">
+            <div class="flex items-center gap-6 sm:gap-12 px-6">
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Verified Listings</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Trusted Agents</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Zero Hidden Fees</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Legal Support</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Mortgage Guidance</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+            </div>
+            <div class="flex items-center gap-6 sm:gap-12 px-6" aria-hidden="true">
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Verified Listings</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Trusted Agents</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Zero Hidden Fees</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Legal Support</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+                <span class="font-heading font-bold text-xs sm:text-base text-[#0F1F3D] tracking-widest uppercase">Mortgage Guidance</span>
+                <span class="text-[#0F1F3D]/50">◆</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2 • FEATURED PROPERTIES
+    ============================================================ -->
+    <section class="section-pad bg-background transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
+                <div class="max-w-2xl">
+                    <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Featured Properties</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-text mt-3 mb-3 font-bold">
+                        Handpicked <span class="text-gradient-gold italic">Homes</span>
+                    </h2>
+                    <p class="text-secondary-text text-sm sm:text-base">Curated by our top agents — every listing verified and ready to view.</p>
+                </div>
+                <a href="buy.html" class="text-[#C9A961] font-semibold text-sm inline-flex items-center gap-2 hover:gap-3 transition-all whitespace-nowrap">
+                    View All <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+
+                <div class="property-card">
+                    <div class="relative h-56 sm:h-64 overflow-hidden">
+                        <img src="assets/index1.jpg" alt="Modern villa" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-[#C9A961] text-[#0F1F3D] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">For Sale</span>
+                        <button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0F1F3D] hover:bg-[#C9A961] transition">
+                            <i class="far fa-heart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1">Villa</p>
+                        <h3 class="font-display text-lg sm:text-xl font-bold text-primary-text mb-2 min-h-[3.5rem]">Beverly Hills Modern Villa</h3>
+                        <p class="text-xs sm:text-sm text-secondary-text mb-4 flex items-center gap-1.5">
+                            <i class="fas fa-map-marker-alt text-[#C9A961] text-xs"></i> Beverly Hills, CA
+                        </p>
+                        <div class="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs text-secondary-text pb-4 mb-4 border-b border-border">
+                            <span class="flex items-center gap-1.5"><i class="fas fa-bed text-[#C9A961]"></i> 5 Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 4 Baths</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 4,200 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$4.85M</p>
+                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="relative h-56 sm:h-64 overflow-hidden">
+                        <img src="assets/index2.jpg" alt="Luxury apartment" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-[#0F1F3D] text-[#C9A961] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">For Rent</span>
+                        <button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0F1F3D] hover:bg-[#C9A961] transition">
+                            <i class="far fa-heart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1">Apartment</p>
+                        <h3 class="font-display text-lg sm:text-xl font-bold text-primary-text mb-2 min-h-[3.5rem]">Downtown Skyline Penthouse</h3>
+                        <p class="text-xs sm:text-sm text-secondary-text mb-4 flex items-center gap-1.5">
+                            <i class="fas fa-map-marker-alt text-[#C9A961] text-xs"></i> Manhattan, NY
+                        </p>
+                        <div class="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs text-secondary-text pb-4 mb-4 border-b border-border">
+                            <span class="flex items-center gap-1.5"><i class="fas fa-bed text-[#C9A961]"></i> 3 Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 3 Baths</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 2,100 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$8,500<span class="text-xs font-normal text-secondary-text">/mo</span></p>
+                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card sm:col-span-2 lg:col-span-1">
+                    <div class="relative h-56 sm:h-64 overflow-hidden">
+                        <img src="assets/index3.jpg" alt="Family home" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-[#C9A961] text-[#0F1F3D] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">For Sale</span>
+                        <button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0F1F3D] hover:bg-[#C9A961] transition">
+                            <i class="far fa-heart text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1">Family Home</p>
+                        <h3 class="font-display text-lg sm:text-xl font-bold text-primary-text mb-2 min-h-[3.5rem]">Suburban Family Retreat</h3>
+                        <p class="text-xs sm:text-sm text-secondary-text mb-4 flex items-center gap-1.5">
+                            <i class="fas fa-map-marker-alt text-[#C9A961] text-xs"></i> Austin, TX
+                        </p>
+                        <div class="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs text-secondary-text pb-4 mb-4 border-b border-border">
+                            <span class="flex items-center gap-1.5"><i class="fas fa-bed text-[#C9A961]"></i> 4 Beds</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 3 Baths</span>
+                            <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 3,100 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$780K</p>
+                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3 • PROPERTY CATEGORIES
+    ============================================================ -->
+    <section class="section-pad bg-hover transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Property Categories</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-text mt-3 mb-3 font-bold">
+                    Explore <span class="text-gradient-gold italic">By Type</span>
+                </h2>
+                <p class="text-secondary-text text-sm sm:text-base">Find exactly what you're looking for with our curated categories.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                <a href="buy.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="assets/index4.jpg" alt="Luxury homes" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
+                        <i class="fas fa-building text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
+                        <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
+                            <p class="font-display text-base sm:text-xl font-bold text-white leading-tight mb-1">Luxury Homes</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300">420+ listings</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="rent.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="assets/index5.jpg" alt="Apartments" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
+                        <i class="fas fa-city text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
+                        <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
+                            <p class="font-display text-base sm:text-xl font-bold text-white leading-tight mb-1">Apartments</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300">860+ listings</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="buy.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="assets/index6.jpg" alt="Family houses" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
+                        <i class="fas fa-house text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
+                        <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
+                            <p class="font-display text-base sm:text-xl font-bold text-white leading-tight mb-1">Family Houses</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300">620+ listings</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="rent.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
+                    <img src="assets/index7.jpg" alt="Studios" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
+                        <i class="fas fa-door-open text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
+                        <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
+                            <p class="font-display text-base sm:text-xl font-bold text-white leading-tight mb-1">Studios</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300">340+ listings</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4 • LATEST LISTINGS
+    ============================================================ -->
+    <section class="section-pad bg-background transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
+                <div>
+                    <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Latest Listings</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-text mt-3 font-bold">
+                        Fresh On <span class="text-gradient-gold italic">The Market</span>
+                    </h2>
+                </div>
+                <a href="buy.html" class="text-[#C9A961] font-semibold text-sm inline-flex items-center gap-2 hover:gap-3 transition-all whitespace-nowrap">
+                    See All <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Listing 1 -->
+                <div class="property-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/index8.jpg" alt="Property" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#C9A961] text-[#0F1F3D] text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">New</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-base font-bold text-primary-text mb-1.5">Riverside Cottage</h3>
+                        <p class="text-[11px] text-secondary-text mb-3 flex items-center gap-1">
+                            <i class="fas fa-map-marker-alt text-[#C9A961] text-[10px]"></i> Portland, OR
+                        </p>
+                        <div class="flex items-center gap-3 text-[10px] text-secondary-text pb-3 mb-3 border-b border-border">
+                            <span><i class="fas fa-bed text-[#C9A961]"></i> 3</span>
+                            <span><i class="fas fa-bath text-[#C9A961]"></i> 2</span>
+                            <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 1,800 sqft</span>
+                        </div>
+                        <p class="font-display text-lg font-bold text-[#C9A961]">$520K</p>
+                    </div>
+                </div>
+
+                <!-- Listing 2 -->
+                <div class="property-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/index9.jpg" alt="Property" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#0F1F3D] text-[#C9A961] text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">Rent</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-base font-bold text-primary-text mb-1.5">City Loft Studio</h3>
+                        <p class="text-[11px] text-secondary-text mb-3 flex items-center gap-1">
+                            <i class="fas fa-map-marker-alt text-[#C9A961] text-[10px]"></i> Chicago, IL
+                        </p>
+                        <div class="flex items-center gap-3 text-[10px] text-secondary-text pb-3 mb-3 border-b border-border">
+                            <span><i class="fas fa-bed text-[#C9A961]"></i> 1</span>
+                            <span><i class="fas fa-bath text-[#C9A961]"></i> 1</span>
+                            <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 720 sqft</span>
+                        </div>
+                        <p class="font-display text-lg font-bold text-[#C9A961]">$2,400<span class="text-[10px] font-normal text-secondary-text">/mo</span></p>
+                    </div>
+                </div>
+
+                <!-- Listing 3 -->
+                <div class="property-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/index10.jpg" alt="Property" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#C9A961] text-[#0F1F3D] text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">New</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-base font-bold text-primary-text mb-1.5">Hillside Estate</h3>
+                        <p class="text-[11px] text-secondary-text mb-3 flex items-center gap-1">
+                            <i class="fas fa-map-marker-alt text-[#C9A961] text-[10px]"></i> Denver, CO
+                        </p>
+                        <div class="flex items-center gap-3 text-[10px] text-secondary-text pb-3 mb-3 border-b border-border">
+                            <span><i class="fas fa-bed text-[#C9A961]"></i> 5</span>
+                            <span><i class="fas fa-bath text-[#C9A961]"></i> 4</span>
+                            <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 4,500 sqft</span>
+                        </div>
+                        <p class="font-display text-lg font-bold text-[#C9A961]">$2.1M</p>
+                    </div>
+                </div>
+
+                <!-- Listing 4 -->
+                <div class="property-card">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="assets/index11.jpg" alt="Property" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#0F1F3D] text-[#C9A961] text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">Rent</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-display text-base font-bold text-primary-text mb-1.5">Beachside Condo</h3>
+                        <p class="text-[11px] text-secondary-text mb-3 flex items-center gap-1">
+                            <i class="fas fa-map-marker-alt text-[#C9A961] text-[10px]"></i> Miami, FL
+                        </p>
+                        <div class="flex items-center gap-3 text-[10px] text-secondary-text pb-3 mb-3 border-b border-border">
+                            <span><i class="fas fa-bed text-[#C9A961]"></i> 2</span>
+                            <span><i class="fas fa-bath text-[#C9A961]"></i> 2</span>
+                            <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 1,400 sqft</span>
+                        </div>
+                        <p class="font-display text-lg font-bold text-[#C9A961]">$4,800<span class="text-[10px] font-normal text-secondary-text">/mo</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 6 • WHY CHOOSE US
+    ============================================================ -->
+    <section class="section-pad bg-background transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Why Choose Us</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-text mt-3 mb-3 font-bold">
+                    The EstateHub <span class="text-gradient-gold italic">Difference</span>
+                </h2>
+                <p class="text-secondary-text text-sm sm:text-base">Everything you need to buy, sell, or rent — in one elegant, trusted platform.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+                <div class="feature-tile">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-shield-halved text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Verified Listings</h3>
+                    <p class="text-sm text-secondary-text leading-relaxed">Every property is inspected and legally verified before it goes live.</p>
+                </div>
+
+                <div class="feature-tile">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-user-tie text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Trusted Agents</h3>
+                    <p class="text-sm text-secondary-text leading-relaxed">Certified professionals with years of local market expertise.</p>
+                </div>
+
+                <div class="feature-tile">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-file-signature text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Legal Support</h3>
+                    <p class="text-sm text-secondary-text leading-relaxed">Contracts, inspections, and paperwork handled by experts.</p>
+                </div>
+
+                <div class="feature-tile">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-percent text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Mortgage Guidance</h3>
+                    <p class="text-sm text-secondary-text leading-relaxed">Compare loan options and get pre-approved with confidence.</p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-12 sm:mt-16 text-center">
+                <a href="signup.html" class="inline-flex items-center gap-2 book-btn px-8 py-4 rounded-full text-sm font-bold">
+                    <i class="fas fa-user-plus"></i> Create Free Account
+                </a>
+                <p class="text-secondary-text text-xs mt-4">No credit card required • Free forever plan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7 • IMAGE SECTION
+    ============================================================ -->
+    <section class="section-pad bg-hover transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-primary-text mb-8 font-bold">
+                Luxury <span class="text-gradient-gold italic">Redefined</span>
+            </h2>
+            <div class="rounded-3xl overflow-hidden shadow-2xl relative">
+                <img src="assets/modern_property.png" alt="Modern Luxury Property" class="w-full h-auto object-cover max-h-[70vh]">
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="pt-14 sm:pt-16 pb-6 sm:pb-8 bg-[#0A1524] text-gray-300">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-white/10">
+
+                <div class="lg:col-span-2">
+                    <a href="index.html" class="flex items-center gap-2.5 mb-5">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shadow-lg" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
+                            <i class="fas fa-building text-[#C9A961] text-base sm:text-lg"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white">Estate<span style="color:#C9A961;">Hub</span></span>
+                            <span class="text-[8px] sm:text-[9px] tracking-[0.28em] uppercase font-semibold text-white/60">Real Estate • Property Portal</span>
+                        </div>
+                    </a>
+                    <p class="text-sm text-gray-400 leading-relaxed max-w-sm mb-6">
+                        Premium real estate agency and property listing portal. Connecting buyers, sellers, renters, and agents since 2014.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-linkedin-in text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-youtube text-sm"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-4">Explore</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="buy.html" class="text-gray-400 hover:text-[#C9A961] transition">Buy Property</a></li>
+                        <li><a href="rent.html" class="text-gray-400 hover:text-[#C9A961] transition">Rent Property</a></li>
+                        <li><a href="agents.html" class="text-gray-400 hover:text-[#C9A961] transition">Find Agents</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#C9A961] transition">Services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-4">Company</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="about.html" class="text-gray-400 hover:text-[#C9A961] transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-[#C9A961] transition">Contact</a></li>
+                        <li><a href="signup.html" class="text-gray-400 hover:text-[#C9A961] transition">Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3 text-gray-400">
+                            <i class="fas fa-map-marker-alt mt-1 text-[#C9A961]"></i>
+                            <span>500 Park Avenue, Suite 18<br>New York, NY 10022</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fas fa-phone text-[#C9A961]"></i>
+                            <span>(212) 555-0142</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fas fa-envelope text-[#C9A961]"></i>
+                            <span>hello@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="py-6 sm:py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>© 2026 EstateHub — Real Estate Agency &amp; Property Portal. All rights reserved.</p>
+                <div class="flex gap-4 sm:gap-6">
+                    <a href="#" class="hover:text-[#C9A961] transition">Privacy</a>
+                    <a href="#" class="hover:text-[#C9A961] transition">Terms</a>
+                    <a href="contact.html" class="hover:text-[#C9A961] transition">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const html = document.documentElement;
+
+            // Theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            function applyTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                if (theme === 'dark') html.classList.add('dark');
+                else html.classList.remove('dark');
+                localStorage.setItem('theme', theme);
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            }
+            applyTheme(savedTheme);
+
+            [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')]
+                .filter(Boolean).forEach(btn => btn.addEventListener('click', () => {
+                    applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+                }));
+
+            // RTL
+            const savedLang = localStorage.getItem('language') || 'en';
+            if (savedLang === 'ar') html.setAttribute('dir', 'rtl');
+            const toggleRTL = () => {
+                const next = html.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+                html.setAttribute('dir', next);
+                localStorage.setItem('language', next === 'rtl' ? 'ar' : 'en');
+            };
+            document.getElementById('lang-icon')?.addEventListener('click', toggleRTL);
+            document.getElementById('mobile-lang-toggle')?.addEventListener('click', toggleRTL);
+
+            // Mobile drawer
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const content = document.getElementById('drawer-content');
+            const backdrop = document.getElementById('drawer-backdrop');
+            const openMenu = () => {
+                drawer.classList.remove('pointer-events-none');
+                content.classList.remove('translate-x-full');
+                content.classList.add('translate-x-0');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            };
+            const closeMenu = () => {
+                content.classList.add('translate-x-full');
+                content.classList.remove('translate-x-0');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    drawer.classList.add('pointer-events-none');
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+            document.getElementById('mobile-menu-open')?.addEventListener('click', openMenu);
+            document.getElementById('mobile-menu-close')?.addEventListener('click', closeMenu);
+            backdrop?.addEventListener('click', closeMenu);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+            // Mobile accordions
+            const setupAccordion = (toggleId, menuId, iconId) => {
+                document.getElementById(toggleId)?.addEventListener('click', () => {
+                    document.getElementById(menuId)?.classList.toggle('hidden');
+                    document.getElementById(iconId)?.classList.toggle('rotate-180');
+                });
+            };
+            setupAccordion('mobile-home-toggle', 'mobile-home-menu', 'home-icon');
+            setupAccordion('mobile-dashboard-toggle', 'mobile-dashboard-menu', 'dashboard-icon');
+
+            // Navbar scroll
+            const nav = document.getElementById('mainNav');
+            function updateNav() {
+                if (window.scrollY > 30) nav.classList.add('scrolled');
+                else nav.classList.remove('scrolled');
+            }
+            window.addEventListener('scroll', updateNav);
+            updateNav();
+        })();
+    </script>
+</body>
+
+</html>
+

@@ -1,0 +1,1201 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact Us • EstateHub — Premium Real Estate</title>
+     <link rel="icon" type="image/png" href="assets/fav.png">
+    <meta name="description" content="Get in touch with EstateHub — visit our offices, call us, or send a message. We're here to help with all your real estate needs.">
+
+       <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'Georgia', 'serif'],
+                        heading: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+                        body: ['"Inter"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root, html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #0F1F3D;
+            --color-secondary-text: #78716C;
+            --color-gold: #C9A961;
+            --color-gold-light: #E0C28A;
+            --color-border: #E8E2D6;
+            --color-hover: #FAF7F2;
+            --color-card-bg: #FFFFFF;
+            --nav-bg-scrolled: #0F1F3D;
+        }
+        html[data-theme='dark'] {
+            --color-background: #0A1524;
+            --color-primary-text: #F5EFE4;
+            --color-secondary-text: #A8A29E;
+            --color-gold: #E0C28A;
+            --color-gold-light: #C9A961;
+            --color-border: #1E3A5F;
+            --color-hover: #132339;
+            --color-card-bg: #132339;
+            --nav-bg-scrolled: #000000;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            margin: 0; padding: 0;
+        }
+
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-gold { color: var(--color-gold); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .bg-card { background-color: var(--color-card-bg); }
+        .border-border { border-color: var(--color-border); }
+
+        .bg-navy-gradient { background: linear-gradient(135deg, #0F1F3D 0%, #1E3A5F 100%); }
+        .bg-gold-gradient { background: linear-gradient(135deg, #C9A961 0%, #E0C28A 100%); }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #C9A961 0%, #E0C28A 50%, #C9A961 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .font-display { font-family: 'Playfair Display', Georgia, serif; }
+        .font-heading { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+        /* NAVBAR */
+        .navbar-fixed {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: transparent;
+            transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+        }
+        .navbar-fixed.scrolled {
+            padding: 12px 0;
+            background: var(--nav-bg-scrolled);
+            box-shadow: 0 8px 30px rgba(15, 31, 61, 0.2);
+            backdrop-filter: blur(8px);
+        }
+        .navbar-fixed.scrolled .nav-logo-text { color: #FFFFFF; }
+        .navbar-fixed.scrolled .nav-link { color: rgba(255,255,255,0.85); }
+        .navbar-fixed.scrolled .nav-link:hover,
+        .navbar-fixed.scrolled .nav-link.active { color: #E0C28A !important; }
+        .navbar-fixed.scrolled .icon-btn {
+            background: rgba(255,255,255,0.08);
+            color: #FFFFFF;
+            border-color: rgba(255,255,255,0.15);
+        }
+        .navbar-fixed.scrolled .login-btn {
+            color: #FFFFFF !important;
+            border-color: rgba(255,255,255,0.3) !important;
+        }
+        .navbar-fixed .nav-link { color: rgba(255,255,255,0.9); }
+        .navbar-fixed .nav-logo-text { color: #FFFFFF; }
+        .navbar-fixed .icon-btn {
+            background: rgba(255,255,255,0.10);
+            color: #FFFFFF;
+            border-color: rgba(255,255,255,0.15);
+        }
+        .navbar-fixed .icon-btn:hover,
+        .navbar-fixed.scrolled .icon-btn:hover {
+            background: linear-gradient(135deg,#C9A961,#E0C28A);
+            color: #0F1F3D;
+            border-color: transparent;
+        }
+        .navbar-fixed .login-btn {
+            color: #FFFFFF;
+            border-color: rgba(255,255,255,0.3);
+        }
+        .navbar-fixed .login-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #E0C28A;
+            color: #E0C28A;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            padding: 0.4rem 0;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #C9A961, #E0C28A);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            border-radius: 2px;
+        }
+        .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+        .nav-link.active, .nav-link:hover { color: #E0C28A !important; }
+
+        .dropdown-wrapper { position: relative; }
+        .dropdown-wrapper::before {
+            content: ''; position: absolute;
+            left: 0; right: 0; height: 20px;
+            bottom: 100%; z-index: 100; background: transparent;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px -12px rgba(15, 31, 61, 0.25);
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0; visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            padding: 0.5rem 0;
+        }
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateY(0); display: block;
+        }
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        .dropdown-menu a i {
+            color: var(--color-gold);
+            width: 16px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-gold);
+            padding-left: 1.75rem;
+        }
+
+        .book-btn {
+            background: linear-gradient(135deg, #C9A961, #E0C28A);
+            color: #0F1F3D;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .book-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        .book-btn:hover::before { left: 100%; }
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.55);
+        }
+
+        .icon-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            background: transparent;
+        }
+        .icon-btn:hover { transform: scale(1.08); }
+
+        .login-btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid;
+            transition: all 0.25s ease;
+        }
+
+        body::-webkit-scrollbar { width: 8px; }
+        body::-webkit-scrollbar-track { background: var(--color-hover); }
+        body::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #C9A961, #E0C28A);
+            border-radius: 8px;
+        }
+
+        .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+        @media (min-width: 768px) {
+            .section-pad { padding-top: 6rem; padding-bottom: 6rem; }
+        }
+
+        [dir="rtl"] .dropdown-menu { left: auto; right: 0; }
+        [dir="rtl"] .nav-link::after { left: auto; right: 0; }
+        [dir="rtl"] .fa-arrow-right { transform: scaleX(-1); }
+
+        /* Contact Info Card */
+        .info-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.25rem;
+            padding: 1.75rem;
+            transition: all 0.4s ease;
+        }
+        .info-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -18px rgba(201, 169, 97, 0.3);
+        }
+
+        /* Form Input */
+        .form-input {
+            width: 100%;
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
+            padding: 0.8rem 1rem;
+            font-size: 0.875rem;
+            color: var(--color-primary-text);
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-input:focus {
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.15);
+        }
+        .form-input::placeholder { color: var(--color-secondary-text); }
+
+        textarea.form-input { resize: vertical; min-height: 120px; }
+
+        /* Map Wrapper */
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 25px 50px -20px rgba(15, 31, 61, 0.25);
+        }
+        .map-wrapper iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(0.2) contrast(1.05);
+            transition: filter 0.4s ease;
+        }
+        html[data-theme='dark'] .map-wrapper iframe {
+            filter: grayscale(0.4) invert(0.9) contrast(0.9);
+        }
+        .map-wrapper:hover iframe {
+            filter: grayscale(0) contrast(1);
+        }
+
+        /* Office Card */
+        .office-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            transition: all 0.35s ease;
+        }
+        .office-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: 0 18px 36px -16px rgba(201, 169, 97, 0.28);
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .faq-item:hover { border-color: var(--color-gold); }
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.15rem 1.4rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-primary-text);
+            cursor: pointer;
+            transition: color 0.25s ease;
+        }
+        .faq-question:hover { color: var(--color-gold); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 400px;
+            padding-bottom: 1.25rem;
+        }
+        .faq-item.open .faq-icon { transform: rotate(180deg); }
+        .faq-icon { transition: transform 0.3s ease; }
+    </style>
+</head>
+
+<body class="antialiased bg-background">
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar-fixed" id="mainNav">
+        <nav class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between gap-3">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0">
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shadow-lg" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
+                        <i class="fas fa-building text-[#C9A961] text-base sm:text-lg"></i>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="nav-logo-text font-display text-xl sm:text-2xl md:text-3xl tracking-tight font-bold">Estate<span style="color:#C9A961;">Hub</span></span>
+                        <span class="text-[8px] sm:text-[9px] tracking-[0.28em] uppercase font-semibold" style="color:rgba(255,255,255,0.6);">Real Estate • Property Portal</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center justify-center flex-1 gap-5 mx-4">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center font-semibold">
+                            Home
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html"><i class="fas fa-home"></i> Home 1</a>
+                            <a href="home2.html"><i class="fas fa-house-chimney"></i> Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Service</a>
+                    <a href="rent.html" class="nav-link">Rent</a>
+                    <a href="buy.html" class="nav-link">Buy</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center">
+                            Dashboard
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="sub-admin.html"><i class="fas fa-user-shield"></i> Sub Admin</a>
+                            <a href="customer-dashboard.html"><i class="fas fa-user"></i> Customer</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <button id="lang-icon" class="icon-btn hidden xl:inline-flex" title="Toggle RTL" aria-label="Toggle RTL">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                    </button>
+                    <button id="theme-toggle" class="icon-btn hidden xl:inline-flex" title="Toggle Theme" aria-label="Toggle Theme">
+                        <svg class="w-4 h-4 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-4 h-4 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <a href="signup.html" class="hidden xl:inline-flex book-btn px-5 py-2.5 rounded-full text-xs">
+                        <i class="fas fa-user-plus mr-1.5"></i> Sign Up
+                    </a>
+                    <button id="mobile-menu-open" class="xl:hidden icon-btn" aria-label="Open menu">
+                        <i class="fas fa-bars text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= MOBILE DRAWER ================= -->
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-[110] pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawer-content" class="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-background shadow-2xl transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto">
+            <div class="p-5">
+                <div class="flex justify-between items-center pb-4 border-b border-border mb-4">
+                    <a href="index.html" class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
+                            <i class="fas fa-building text-[#C9A961] text-sm"></i>
+                        </div>
+                        <span class="font-display text-lg font-bold text-primary-text">Estate<span style="color:#C9A961;">Hub</span></span>
+                    </a>
+                    <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-hover transition">
+                        <i class="fas fa-times text-primary-text"></i>
+                    </button>
+                </div>
+                <nav class="flex flex-col space-y-1">
+                    <div>
+                        <button class="w-full flex justify-between items-center py-3 px-3 rounded-xl font-semibold text-[#C9A961] hover:bg-hover transition" id="mobile-home-toggle">
+                            Home
+                            <svg class="w-4 h-4 transform transition-transform duration-200" id="home-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="mobile-home-menu" class="hidden pl-3 flex flex-col space-y-1 mt-1">
+                            <a href="index.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Home 1</a>
+                            <a href="home2.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">About</a>
+                    <a href="services.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Service</a>
+                    <a href="rent.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Rent</a>
+                    <a href="buy.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Buy</a>
+                    <a href="contact.html" class="py-3 px-3 rounded-xl font-semibold text-[#C9A961] bg-hover transition">Contact</a>
+
+                    <div>
+                        <button class="w-full flex justify-between items-center py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition" id="mobile-dashboard-toggle">
+                            Dashboard
+                            <svg class="w-4 h-4 transform transition-transform duration-200" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="mobile-dashboard-menu" class="hidden pl-3 flex flex-col space-y-1 mt-1">
+                            <a href="sub-admin.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Sub Admin</a>
+                            <a href="customer-dashboard.html" class="py-2 px-3 text-sm text-primary-text hover:text-[#C9A961] transition">Customer</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="mt-6 pt-6 border-t border-border flex flex-col gap-3">
+                    <a href="signup.html" class="block w-full book-btn text-center py-3.5 rounded-xl font-bold text-sm">
+                        <i class="fas fa-user-plus mr-2"></i> Sign Up
+                    </a>
+                </div>
+                <div class="mt-5 flex justify-around items-center pt-5 border-t border-border">
+                    <button id="mobile-lang-toggle" class="flex flex-col items-center text-primary-text hover:text-[#C9A961] p-2 transition">
+                        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                        <span class="text-[10px] uppercase tracking-wider">RTL</span>
+                    </button>
+                    <button id="mobile-theme-toggle" class="flex flex-col items-center text-primary-text hover:text-[#C9A961] p-2 transition">
+                        <svg class="w-5 h-5 mb-1 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <svg class="w-5 h-5 mb-1 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        <span class="text-[10px] uppercase tracking-wider">Theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         HERO SECTION • CONTACT
+    ============================================================ -->
+    <section class="relative min-h-[100vh] sm:min-h-[95vh] flex items-center overflow-hidden bg-navy-gradient pt-[120px] sm:pt-[110px]">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?w=1920&q=80"
+                 alt="Contact our office"
+                 class="w-full h-full object-cover opacity-35">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#0F1F3D]/90 via-[#0F1F3D]/70 to-[#1E3A5F]/85"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-[#C9A961]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6">
+                    <span class="w-2 h-2 rounded-full bg-[#C9A961] animate-pulse"></span>
+                    <span class="text-white text-[9px] sm:text-xs font-semibold tracking-widest uppercase">We Reply Within 24 Hours</span>
+                </div>
+
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.05] sm:leading-[0.95] tracking-tight mb-5 sm:mb-6 font-bold">
+                    Get In <br>
+                    <span class="text-gradient-gold italic">Touch</span>
+                    <br>
+                    With Us.
+                </h1>
+
+                <p class="text-gray-300 text-sm sm:text-base lg:text-lg xl:text-xl max-w-2xl leading-relaxed mb-8 sm:mb-10 font-light">
+                    Questions about buying, selling, or renting? Our team is ready to help. Reach out by phone, email, or visit one of our offices.
+                </p>
+
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <a href="#contact-form" class="book-btn px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-bold">
+                        <i class="fas fa-paper-plane mr-2"></i> Send a Message
+                    </a>
+                    <a href="#map-section" class="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-semibold text-white border border-white/30 hover:border-[#C9A961] hover:text-[#C9A961] transition">
+                        <i class="fas fa-map-location-dot mr-2"></i> Find Us
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl">
+                    <div>
+                        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">24<span class="text-[#C9A961]">/7</span></p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Support Available</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">5<span class="text-[#C9A961]"></span></p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Global Offices</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">4.9<span class="text-[#C9A961]">★</span></p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Client Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center text-white/60 animate-bounce">
+            <span class="text-[10px] uppercase tracking-widest mb-1">Scroll</span>
+            <i class="fas fa-chevron-down text-sm"></i>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT INFO CARDS
+    ============================================================ -->
+    <section class="section-pad bg-background transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+
+                <div class="info-card text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-phone text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-base font-bold text-primary-text mb-1.5">Call Us</h3>
+                    <p class="text-sm text-secondary-text mb-1">(212) 555-0142</p>
+                    <p class="text-xs text-secondary-text">Mon – Sat • 9AM – 7PM</p>
+                </div>
+
+                <div class="info-card text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-envelope text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-base font-bold text-primary-text mb-1.5">Email Us</h3>
+                    <p class="text-sm text-secondary-text mb-1">hello@estatehub.com</p>
+                    <p class="text-xs text-secondary-text">support@estatehub.com</p>
+                </div>
+
+                <div class="info-card text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-location-dot text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-base font-bold text-primary-text mb-1.5">Visit Us</h3>
+                    <p class="text-sm text-secondary-text mb-1">500 Park Avenue, Suite 18</p>
+                    <p class="text-xs text-secondary-text">New York, NY 10022</p>
+                </div>
+
+                <div class="info-card text-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                        <i class="fas fa-comments text-[#C9A961] text-xl"></i>
+                    </div>
+                    <h3 class="font-display text-base font-bold text-primary-text mb-1.5">Live Chat</h3>
+                    <p class="text-sm text-secondary-text mb-1">Available 24/7</p>
+                    <p class="text-xs text-[#C9A961] font-semibold cursor-pointer hover:underline">Start Chat →</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT FORM + SIDE INFO
+    ============================================================ -->
+    <section id="contact-form" class="section-pad bg-hover transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
+
+                <!-- Left info -->
+                <div class="lg:col-span-2">
+                    <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Send a Message</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-primary-text mt-3 mb-5 font-bold leading-tight">
+                        Let's Start a <span class="text-gradient-gold italic">Conversation</span>
+                    </h2>
+                    <p class="text-secondary-text text-sm sm:text-base leading-relaxed mb-8">
+                        Whether you're buying your first home, selling a property, or just exploring options — we'd love to hear from you. Fill out the form and our team will get back to you promptly.
+                    </p>
+
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                                <i class="fas fa-headset text-[#C9A961] text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-primary-text text-sm mb-0.5">Dedicated Support</p>
+                                <p class="text-secondary-text text-sm">Real humans, real answers — no bots.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                                <i class="fas fa-clock text-[#C9A961] text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-primary-text text-sm mb-0.5">Fast Response</p>
+                                <p class="text-secondary-text text-sm">We reply to every inquiry within 24 hours.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                                <i class="fas fa-lock text-[#C9A961] text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-primary-text text-sm mb-0.5">Privacy First</p>
+                                <p class="text-secondary-text text-sm">Your data stays private — always.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right form -->
+                <div class="lg:col-span-3">
+                    <div class="bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-lg">
+                        <form class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-semibold text-secondary-text uppercase tracking-wider mb-2">First Name *</label>
+                                    <input type="text" placeholder="John" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-secondary-text uppercase tracking-wider mb-2">Last Name *</label>
+                                    <input type="text" placeholder="Doe" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-semibold text-secondary-text uppercase tracking-wider mb-2">Email *</label>
+                                    <input type="email" placeholder="john@example.com" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-secondary-text uppercase tracking-wider mb-2">Phone</label>
+                                    <input type="tel" placeholder="(212) 555-0142" class="form-input">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-secondary-text uppercase tracking-wider mb-2">Subject *</label>
+                                <select class="form-input" required>
+                                    <option value="" disabled selected>Select a topic</option>
+                                    <option>Buying a property</option>
+                                    <option>Selling a property</option>
+                                    <option>Renting a property</option>
+                                    <option>Property management</option>
+                                    <option>Investment advice</option>
+                                    <option>General inquiry</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-secondary-text uppercase tracking-wider mb-2">Message *</label>
+                                <textarea placeholder="Tell us how we can help you..." class="form-input" required></textarea>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="consent" class="mt-1 w-4 h-4 accent-[#C9A961] cursor-pointer" required>
+                                <label for="consent" class="text-xs text-secondary-text leading-relaxed cursor-pointer">
+                                    I agree to the <a href="#" class="text-[#C9A961] font-semibold hover:underline">Privacy Policy</a> and consent to being contacted about my inquiry.
+                                </label>
+                            </div>
+
+                            <button type="submit" class="w-full book-btn py-4 rounded-xl text-sm font-bold">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         MAP SECTION
+    ============================================================ -->
+    <section id="map-section" class="section-pad bg-background transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Our Location</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-primary-text mt-3 mb-3 font-bold">
+                    Find Us on the <span class="text-gradient-gold italic">Map</span>
+                </h2>
+                <p class="text-secondary-text text-sm sm:text-base">Visit our headquarters in the heart of New York City — we'd love to meet you.</p>
+            </div>
+
+            <!-- Map -->
+            <div class="map-wrapper h-[300px] sm:h-[350px] lg:h-[400px]">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2156529154614!2d-73.97398368459402!3d40.75914397932677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258f9cfcb250d%3A0xdb570dd7f4d0e0e!2s500%20Park%20Ave%2C%20New%20York%2C%20NY%2010022%2C%20USA!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="EstateHub Headquarters Location">
+                </iframe>
+            </div>
+
+            <!-- Map overlay card -->
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-5 bg-card border border-border rounded-2xl p-5 sm:p-6">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#C9A961,#E0C28A);">
+                        <i class="fas fa-building text-[#0F1F3D] text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-base font-bold text-primary-text mb-0.5">EstateHub Headquarters</h3>
+                        <p class="text-sm text-secondary-text">500 Park Avenue, Suite 18, New York, NY 10022</p>
+                    </div>
+                </div>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=500+Park+Ave+New+York+NY+10022" target="_blank" rel="noopener"
+                   class="book-btn px-6 py-3 rounded-full text-xs font-bold whitespace-nowrap">
+                    <i class="fas fa-diamond-turn-right mr-1.5"></i> Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         OFFICE LOCATIONS
+    ============================================================ -->
+    <section class="section-pad bg-hover transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Our Offices</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-primary-text mt-3 mb-3 font-bold">
+                    Visit Us <span class="text-gradient-gold italic">Nearby</span>
+                </h2>
+                <p class="text-secondary-text text-sm sm:text-base">With offices across the country, help is never far away.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+
+                <!-- Office 1 -->
+                <div class="office-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                            <i class="fas fa-location-dot text-[#C9A961] text-base"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-base font-bold text-primary-text mb-0.5">New York</h3>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-[#C9A961]">Headquarters</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-secondary-text">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-map-pin text-[#C9A961] mt-1 text-xs"></i>
+                            <span>500 Park Avenue, Suite 18<br>New York, NY 10022</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-phone text-[#C9A961] text-xs"></i>
+                            <span>(212) 555-0142</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-envelope text-[#C9A961] text-xs"></i>
+                            <span>ny@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Office 2 -->
+                <div class="office-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                            <i class="fas fa-location-dot text-[#C9A961] text-base"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-base font-bold text-primary-text mb-0.5">Los Angeles</h3>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-[#C9A961]">West Coast</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-secondary-text">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-map-pin text-[#C9A961] mt-1 text-xs"></i>
+                            <span>9200 Sunset Blvd, Suite 400<br>Los Angeles, CA 90069</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-phone text-[#C9A961] text-xs"></i>
+                            <span>(310) 555-0287</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-envelope text-[#C9A961] text-xs"></i>
+                            <span>la@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Office 3 -->
+                <div class="office-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                            <i class="fas fa-location-dot text-[#C9A961] text-base"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-base font-bold text-primary-text mb-0.5">Miami</h3>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-[#C9A961]">South East</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-secondary-text">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-map-pin text-[#C9A961] mt-1 text-xs"></i>
+                            <span>1000 Brickell Ave, Suite 900<br>Miami, FL 33131</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-phone text-[#C9A961] text-xs"></i>
+                            <span>(305) 555-0391</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-envelope text-[#C9A961] text-xs"></i>
+                            <span>miami@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Office 4 -->
+                <div class="office-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                            <i class="fas fa-location-dot text-[#C9A961] text-base"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-base font-bold text-primary-text mb-0.5">Austin</h3>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-[#C9A961]">South Central</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-secondary-text">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-map-pin text-[#C9A961] mt-1 text-xs"></i>
+                            <span>301 Congress Ave, Suite 1200<br>Austin, TX 78701</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-phone text-[#C9A961] text-xs"></i>
+                            <span>(512) 555-0463</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-envelope text-[#C9A961] text-xs"></i>
+                            <span>austin@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Office 5 -->
+                <div class="office-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                            <i class="fas fa-location-dot text-[#C9A961] text-base"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-base font-bold text-primary-text mb-0.5">Chicago</h3>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-[#C9A961]">Midwest</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-secondary-text">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-map-pin text-[#C9A961] mt-1 text-xs"></i>
+                            <span>200 W Madison St, Suite 3400<br>Chicago, IL 60606</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-phone text-[#C9A961] text-xs"></i>
+                            <span>(312) 555-0518</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-envelope text-[#C9A961] text-xs"></i>
+                            <span>chicago@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Office 6 -->
+                <div class="office-card">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
+                            <i class="fas fa-location-dot text-[#C9A961] text-base"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-base font-bold text-primary-text mb-0.5">Seattle</h3>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-[#C9A961]">Pacific NW</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-secondary-text">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fas fa-map-pin text-[#C9A961] mt-1 text-xs"></i>
+                            <span>1201 3rd Ave, Suite 2200<br>Seattle, WA 98101</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-phone text-[#C9A961] text-xs"></i>
+                            <span>(206) 555-0647</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-envelope text-[#C9A961] text-xs"></i>
+                            <span>seattle@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FAQ
+    ============================================================ -->
+    <section class="section-pad bg-background transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+                <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">FAQ</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-primary-text mt-3 mb-3 font-bold">
+                    Common <span class="text-gradient-gold italic">Questions</span>
+                </h2>
+                <p class="text-secondary-text text-sm sm:text-base">Quick answers to the questions we hear most often.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How quickly will I get a response?
+                        <i class="fas fa-chevron-down faq-icon text-[#C9A961] text-xs"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 text-sm text-secondary-text leading-relaxed">
+                            We aim to respond to all inquiries within 24 hours during business days. For urgent matters, please call our office directly at (212) 555-0142.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you charge for initial consultations?
+                        <i class="fas fa-chevron-down faq-icon text-[#C9A961] text-xs"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 text-sm text-secondary-text leading-relaxed">
+                            No — initial consultations are completely free. We'll discuss your needs, answer your questions, and explain how we can help before any commitment.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I schedule a property viewing online?
+                        <i class="fas fa-chevron-down faq-icon text-[#C9A961] text-xs"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 text-sm text-secondary-text leading-relaxed">
+                            Absolutely. Browse any listing and click "Schedule a Viewing" to pick a time that works for you. You can also contact an agent directly through the listing page.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What areas do you serve?
+                        <i class="fas fa-chevron-down faq-icon text-[#C9A961] text-xs"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 text-sm text-secondary-text leading-relaxed">
+                            We operate in 48 cities across the United States, with physical offices in New York, Los Angeles, Miami, Austin, Chicago, and Seattle. Our agents also serve surrounding metro areas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I become a partner agent?
+                        <i class="fas fa-chevron-down faq-icon text-[#C9A961] text-xs"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-6 text-sm text-secondary-text leading-relaxed">
+                            We're always looking for talented agents. Send your resume and a brief introduction to careers@estatehub.com, and our team will get in touch about partnership opportunities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Still have questions -->
+            <div class="max-w-3xl mx-auto mt-10 text-center">
+                <p class="text-secondary-text text-sm mb-4">Still have questions?</p>
+                <a href="#contact-form" class="inline-flex items-center gap-2 book-btn px-7 py-3.5 rounded-full text-sm font-bold">
+                    <i class="fas fa-paper-plane"></i> Contact Our Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="pt-14 sm:pt-16 pb-6 sm:pb-8 bg-[#0A1524] text-gray-300">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-white/10">
+
+                <div class="lg:col-span-2">
+                    <a href="index.html" class="flex items-center gap-2.5 mb-5">
+                        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shadow-lg" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
+                            <i class="fas fa-building text-[#C9A961] text-base sm:text-lg"></i>
+                        </div>
+                        <div class="flex flex-col leading-none">
+                            <span class="font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white">Estate<span style="color:#C9A961;">Hub</span></span>
+                            <span class="text-[8px] sm:text-[9px] tracking-[0.28em] uppercase font-semibold text-white/60">Real Estate • Property Portal</span>
+                        </div>
+                    </a>
+                    <p class="text-sm text-gray-400 leading-relaxed max-w-sm mb-6">
+                        Premium real estate agency and property listing portal. Connecting buyers, sellers, renters, and agents since 2014.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-linkedin-in text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-br hover:from-[#C9A961] hover:to-[#E0C28A] hover:text-[#0F1F3D] hover:border-transparent transition"><i class="fab fa-youtube text-sm"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-4">Explore</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="buy.html" class="text-gray-400 hover:text-[#C9A961] transition">Buy Property</a></li>
+                        <li><a href="rent.html" class="text-gray-400 hover:text-[#C9A961] transition">Rent Property</a></li>
+                        <li><a href="agents.html" class="text-gray-400 hover:text-[#C9A961] transition">Find Agents</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-[#C9A961] transition">Services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-4">Company</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="about.html" class="text-gray-400 hover:text-[#C9A961] transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-[#C9A961] transition">Contact</a></li>
+                        <li><a href="signup.html" class="text-gray-400 hover:text-[#C9A961] transition">Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading font-bold text-white text-sm uppercase tracking-widest mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3 text-gray-400">
+                            <i class="fas fa-map-marker-alt mt-1 text-[#C9A961]"></i>
+                            <span>500 Park Avenue, Suite 18<br>New York, NY 10022</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fas fa-phone text-[#C9A961]"></i>
+                            <span>(212) 555-0142</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fas fa-envelope text-[#C9A961]"></i>
+                            <span>hello@estatehub.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="py-6 sm:py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>© 2026 EstateHub — Real Estate Agency &amp; Property Portal. All rights reserved.</p>
+                <div class="flex gap-4 sm:gap-6">
+                    <a href="#" class="hover:text-[#C9A961] transition">Privacy</a>
+                    <a href="#" class="hover:text-[#C9A961] transition">Terms</a>
+                    <a href="contact.html" class="hover:text-[#C9A961] transition">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const html = document.documentElement;
+
+            // Theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            function applyTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                if (theme === 'dark') html.classList.add('dark');
+                else html.classList.remove('dark');
+                localStorage.setItem('theme', theme);
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            }
+            applyTheme(savedTheme);
+
+            [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')]
+                .filter(Boolean).forEach(btn => btn.addEventListener('click', () => {
+                    applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+                }));
+
+            // RTL
+            const savedLang = localStorage.getItem('language') || 'en';
+            if (savedLang === 'ar') html.setAttribute('dir', 'rtl');
+            const toggleRTL = () => {
+                const next = html.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+                html.setAttribute('dir', next);
+                localStorage.setItem('language', next === 'rtl' ? 'ar' : 'en');
+            };
+            document.getElementById('lang-icon')?.addEventListener('click', toggleRTL);
+            document.getElementById('mobile-lang-toggle')?.addEventListener('click', toggleRTL);
+
+            // Mobile drawer
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const content = document.getElementById('drawer-content');
+            const backdrop = document.getElementById('drawer-backdrop');
+            const openMenu = () => {
+                drawer.classList.remove('pointer-events-none');
+                content.classList.remove('translate-x-full');
+                content.classList.add('translate-x-0');
+                backdrop.classList.add('opacity-100', 'pointer-events-auto');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            };
+            const closeMenu = () => {
+                content.classList.add('translate-x-full');
+                content.classList.remove('translate-x-0');
+                backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    drawer.classList.add('pointer-events-none');
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+            document.getElementById('mobile-menu-open')?.addEventListener('click', openMenu);
+            document.getElementById('mobile-menu-close')?.addEventListener('click', closeMenu);
+            backdrop?.addEventListener('click', closeMenu);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+            // Mobile accordions
+            const setupAccordion = (toggleId, menuId, iconId) => {
+                document.getElementById(toggleId)?.addEventListener('click', () => {
+                    document.getElementById(menuId)?.classList.toggle('hidden');
+                    document.getElementById(iconId)?.classList.toggle('rotate-180');
+                });
+            };
+            setupAccordion('mobile-home-toggle', 'mobile-home-menu', 'home-icon');
+            setupAccordion('mobile-dashboard-toggle', 'mobile-dashboard-menu', 'dashboard-icon');
+
+            // Navbar scroll
+            const nav = document.getElementById('mainNav');
+            function updateNav() {
+                if (window.scrollY > 30) nav.classList.add('scrolled');
+                else nav.classList.remove('scrolled');
+            }
+            window.addEventListener('scroll', updateNav);
+            updateNav();
+
+            // FAQ toggle
+            document.querySelectorAll('.faq-question').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const item = btn.closest('.faq-item');
+                    const isOpen = item.classList.contains('open');
+                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                    if (!isOpen) item.classList.add('open');
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
+
+

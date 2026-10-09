@@ -1,0 +1,509 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EstateHub • Sub-Admin Dashboard</title>
+     <script src="tailwind.js"></script>
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { display: ['"Playfair Display"','Georgia','serif'], heading: ['"Space Grotesk"','system-ui','sans-serif'], body: ['"Inter"','system-ui','sans-serif'] } } } };</script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <style>
+    body { background: #FAF7F2; font-family: 'Inter', sans-serif; }
+    .dark body { background: #0A1524; color: #F5EFE4; }
+    .glass-card {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 169, 97, 0.2);
+    }
+    .dark .glass-card {
+      background: rgba(19,35,57,0.7);
+      border-color: rgba(255,255,255,0.08);
+    }
+    .dark .bg-white { background-color: #132339 !important; }
+    .dark .text-dark { color: #F5EFE4; }
+    .dark .text-dark\/60 { color: #94a3b8; }
+    .dark .border-secondary { border-color: rgba(255,255,255,0.1); }
+    .dark select, .dark input { background-color: #0F1F3D; color: #f8fafc; border-color: rgba(255,255,255,0.15); }
+    [dir="rtl"] .ml-auto { margin-right: auto; margin-left: unset; }
+    [dir="rtl"] .text-left { text-align: right; }
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+    .tab-btn.active { background: linear-gradient(135deg, #C9A961, #E0C28A) !important; color: #0F1F3D !important; box-shadow: 0 4px 12px rgba(201,169,97,0.35) !important; }
+    .dark .tab-btn.active { background: linear-gradient(135deg, #C9A961, #E0C28A) !important; color: #0F1F3D !important; }
+    .tab-btn { transition: all 0.2s; }
+    .badge-active { background: rgba(16,185,129,0.12); color: #10b981; }
+    .badge-pending { background: rgba(245,158,11,0.12); color: #f59e0b; }
+    .badge-review { background: rgba(201,169,97,0.15); color: #C9A961; }
+
+    /* Gold button with shine sweep */
+    .btn-gold {
+      background: linear-gradient(135deg, #C9A961, #E0C28A);
+      color: #0F1F3D;
+      font-weight: 700;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+      transition: left 0.6s ease;
+    }
+    .btn-gold:hover::before { left: 100%; }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -8px rgba(201, 169, 97, 0.6);
+    }
+  </style>
+   <link rel="icon" type="image/png" href="assets/fav.png">
+</head>
+<body class="antialiased overflow-x-hidden relative w-full">
+
+<div class="min-h-screen flex flex-col lg:flex-row bg-[#FAF7F2] dark:bg-[#0A1524] transition-colors duration-300">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-white/95 dark:bg-[#0F1F3D]/95 backdrop-blur-xl border-r border-[#E8E2D6] dark:border-white/10 flex flex-col justify-between py-6 px-5 transition-transform duration-300 -translate-x-full lg:translate-x-0 h-screen overflow-y-auto scrollbar-none shadow-xl">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-[#E8E2D6] dark:border-white/10">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.45);">
+            <i class="fas fa-building text-[#C9A961] text-base"></i>
+          </div>
+          <div class="flex flex-col leading-none">
+            <span class="font-display font-bold text-xl tracking-tight text-[#0F1F3D] dark:text-white">Estate<span style="color:#C9A961;">Hub</span></span>
+            <span class="text-[8px] tracking-[0.28em] uppercase font-semibold text-[#78716C] ">Real Estate Portal</span>
+          </div>
+        </a>
+        <button onclick="toggleSidebar()" class="lg:hidden text-dark dark:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+
+      <div class="flex items-center gap-3 bg-[#FAF7F2] dark:bg-[#132339]/60 p-3 rounded-2xl border border-[#E8E2D6] dark:border-white/5 mt-6">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
+          <i class="fas fa-user-shield text-[#C9A961] text-sm"></i>
+        </div>
+        <div class="text-left"><h5 class="text-sm font-bold text-[#0F1F3D]">Admin Console</h5><p class="text-[10px] text-[#C9A961] font-black uppercase tracking-wider">Sub Admin</p></div>
+      </div>
+
+      <nav class="mt-8 space-y-1.5">
+        <p class="text-[10px] text-dark/40 dark:text-white/40 font-bold uppercase tracking-wider pl-2">Operations</p>
+        <button onclick="switchTab('dispatch')" id="tab-dispatch" class="tab-btn active w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+          <i class="fa-solid fa-map-location-dot text-sm"></i> <span>Property Map</span>
+        </button>
+        <button onclick="switchTab('calendar')" id="tab-calendar" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+          <i class="fa-solid fa-calendar-days text-sm"></i> <span>Schedule</span>
+        </button>
+        <button onclick="switchTab('revenue')" id="tab-revenue" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+          <i class="fa-solid fa-chart-line text-sm"></i> <span>Revenue</span>
+        </button>
+        <button onclick="switchTab('instructors')" id="tab-instructors" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+          <i class="fa-solid fa-user-tie text-sm"></i> <span>Agents</span>
+        </button>
+        <button onclick="switchTab('students')" id="tab-students" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+          <i class="fa-solid fa-users text-sm"></i> <span>Clients</span>
+        </button>
+        <button onclick="switchTab('inventory')" id="tab-inventory" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+          <i class="fa-solid fa-house-chimney text-sm"></i> <span>Inventory</span>
+        </button>
+        <button onclick="switchTab('reports')" id="tab-reports" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+          <i class="fa-solid fa-file-alt text-sm"></i> <span>Reports</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="pt-4 border-t border-[#E8E2D6] dark:border-white/10 space-y-2">
+      <a href="customer-dashboard.html" class="w-full px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-dark/70 dark:text-white/70 hover:bg-[#FAF7F2] dark:hover:bg-[#132339]">
+        <i class="fa-solid fa-circle-user text-sm text-[#C9A961]"></i> <span>Customer Portal</span>
+      </a>
+      <a href="login.html" class="w-full px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20">
+        <i class="fa-solid fa-arrow-right-from-bracket text-sm"></i> <span>Log Out</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- overlay -->
+  <div id="sidebarOverlay" class="fixed inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm z-40 hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+  <!-- ===== MAIN ===== -->
+  <main class="flex-grow min-w-0 lg:ml-72 min-h-screen flex flex-col">
+
+    <!-- header -->
+    <header class="h-20 bg-[#FAF7F2] dark:bg-[#0A1524] border-b border-[#E8E2D6] dark:border-white/10 px-6 flex items-center justify-between sticky top-0 z-30 shadow-sm transition-colors duration-300">
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSidebar()" class="lg:hidden w-10 h-10 rounded-xl bg-[#FAF7F2] dark:bg-white/10 hover:bg-[#C9A961]/20 transition flex items-center justify-center">
+          <i class="fa-solid fa-bars text-sm"></i>
+        </button>
+        <h2 class="text-sm font-bold text-dark/70 dark:text-white/70"><span id="currentTabLabel" class="text-[#C9A961]">Property Map</span></h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-[#FAF7F2] dark:bg-white/10 hover:bg-[#C9A961]/20 transition flex items-center justify-center text-dark dark:text-white">
+          <i class="fa-solid fa-moon dark:hidden text-sm"></i><i class="fa-solid fa-sun hidden dark:block text-sm"></i>
+        </button>
+        <button onclick="toggleDir()" id="dirToggle" class="w-10 h-10 rounded-xl bg-[#FAF7F2] dark:bg-white/10 hover:bg-[#C9A961]/20 transition flex items-center justify-center text-dark dark:text-white font-black text-xs">LTR</button>
+        <div class="relative">
+          <button onclick="toggleNotifications(event)" class="w-10 h-10 rounded-xl bg-[#FAF7F2] dark:bg-white/10 hover:bg-[#C9A961]/20 transition flex items-center justify-center text-dark dark:text-white relative">
+            <i class="fa-solid fa-bell text-sm"></i>
+            <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 rounded-full bg-red-500 border border-white dark:border-neutral-900 animate-pulse"></span>
+          </button>
+          <div id="notifDropdown" class="absolute right-0 mt-3 w-80 bg-white/95 dark:bg-[#132339]/95 backdrop-blur-xl border border-[#E8E2D6] dark:border-white/10 rounded-2xl shadow-2xl p-4 hidden z-50">
+            <div class="flex justify-between items-center pb-2 border-b border-[#E8E2D6] dark:border-white/5 mb-3">
+              <h4 class="font-bold text-xs uppercase tracking-wider">Alerts</h4>
+              <span class="bg-[#C9A961]/10 text-[#C9A961] text-[8px] font-black px-2 py-0.5 rounded-full">3 New</span>
+            </div>
+            <div class="space-y-3 max-h-64 overflow-y-auto pr-1">
+              <div class="flex gap-3 p-2 rounded-xl hover:bg-[#FAF7F2] dark:hover:bg-[#0F1F3D]"><div class="w-8 h-8 rounded-lg bg-[#C9A961]/15 text-[#C9A961] flex items-center justify-center"><i class="fa-solid fa-calendar-check"></i></div><div><h5 class="text-[11px] font-bold">New Site Visit</h5><p class="text-[9px] text-dark/60">Sarah booked a viewing at Beverly Hills Villa.</p></div></div>
+              <div class="flex gap-3 p-2 rounded-xl hover:bg-[#FAF7F2] dark:hover:bg-[#0F1F3D]"><div class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-950/20 text-green-500 flex items-center justify-center"><i class="fa-solid fa-user-plus"></i></div><div><h5 class="text-[11px] font-bold">New Client</h5><p class="text-[9px] text-dark/60">David Kim registered as a buyer.</p></div></div>
+              <div class="flex gap-3 p-2 rounded-xl hover:bg-[#FAF7F2] dark:hover:bg-[#0F1F3D]"><div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950/20 text-amber-500 flex items-center justify-center"><i class="fa-solid fa-file-signature"></i></div><div><h5 class="text-[11px] font-bold">Offer Received</h5><p class="text-[9px] text-dark/60">New offer on Downtown Penthouse.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="p-4 md:p-8 max-w-7xl mx-auto w-full min-w-0 flex-grow">
+
+      <!-- ===== PANEL: PROPERTY MAP ===== -->
+      <section id="panel-dispatch" class="space-y-8">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="bg-white/60 dark:bg-[#132339]/60 p-5 rounded-3xl shadow-sm border border-[#E8E2D6] dark:border-white/10 text-center"><i class="fa-solid fa-house text-[#C9A961] text-xl mb-1"></i><h5 class="text-[10px] text-dark/50 uppercase font-black">Active Listings</h5><p class="text-xl font-bold">24 <span class="text-xs text-dark/40">/ 30</span></p></div>
+          <div class="bg-white/60 dark:bg-[#132339]/60 p-5 rounded-3xl shadow-sm border border-[#E8E2D6] dark:border-white/10 text-center"><i class="fa-solid fa-calendar-check text-[#C9A961] text-xl mb-1"></i><h5 class="text-[10px] text-dark/50 uppercase font-black">Today's Visits</h5><p class="text-xl font-bold">12</p></div>
+          <div class="bg-white/60 dark:bg-[#132339]/60 p-5 rounded-3xl shadow-sm border border-[#E8E2D6] dark:border-white/10 text-center"><i class="fa-solid fa-users text-[#C9A961] text-xl mb-1"></i><h5 class="text-[10px] text-dark/50 uppercase font-black">Active Clients</h5><p class="text-xl font-bold">87</p></div>
+          <div class="bg-white/60 dark:bg-[#132339]/60 p-5 rounded-3xl shadow-sm border border-[#E8E2D6] dark:border-white/10 text-center"><i class="fa-solid fa-dollar-sign text-[#C9A961] text-xl mb-1"></i><h5 class="text-[10px] text-dark/50 uppercase font-black">Revenue (MTD)</h5><p class="text-xl font-bold">$48,240</p></div>
+        </div>
+
+        <div class="bg-bg/20 dark:bg-[#132339] p-4 sm:p-6 md:p-8 rounded-[2.5rem] border border-[#E8E2D6] dark:border-white/10 shadow-sm">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+            <div><span class="text-[#C9A961] font-bold text-xs uppercase tracking-widest">Live Properties</span><h3 class="font-display font-bold text-2xl text-dark dark:text-white">Property Tracking</h3></div>
+            <button onclick="simulateGPS()" class="btn-gold px-4 py-2.5 rounded-xl text-xs"><i class="fa-solid fa-rotate mr-1"></i> Refresh</button>
+          </div>
+          <div class="grid lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 relative">
+              <div class="w-full h-[360px] md:h-[400px] rounded-3xl overflow-hidden border border-[#E8E2D6] dark:border-white/10 bg-[#0A1524] shadow-inner relative">
+                <svg viewBox="0 0 800 480" class="w-full h-full object-cover">
+                  <rect width="100%" height="100%" fill="url(#gridMap)" />
+                  <defs><pattern id="gridMap" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(201,169,97,0.05)" stroke-width="1"/></pattern></defs>
+                  <path d="M 0,120 Q 200,100 400,200 T 800,180" fill="none" stroke="rgba(201,169,97,0.08)" stroke-width="80" />
+                  <path d="M 200,480 Q 350,300 500,480" fill="none" stroke="rgba(201,169,97,0.05)" stroke-width="120" />
+                  <text x="80" y="230" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="10" font-weight="bold">MAIN ST</text>
+                  <text x="415" y="380" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="10" font-weight="bold" transform="rotate(90, 415, 380)">PARK AVE</text>
+                  <!-- Properties -->
+                  <circle cx="320" cy="240" r="12" fill="rgba(201,169,97,0.2)" class="animate-ping" /><circle cx="320" cy="240" r="5" fill="#C9A961" />
+                  <g transform="translate(320, 240) translate(-12, -32)" onclick="selectVehicle(1)"><path d="M12 0 C5.37 0 0 5.37 0 12 C0 21 12 32 12 32 C12 32 24 21 24 12 C24 5.37 18.63 0 12 0 Z" fill="#C9A961" filter="drop-shadow(0px 3px 5px rgba(0,0,0,0.5))" /><circle cx="12" cy="12" r="5" fill="#fff" /><rect x="-4" y="-12" width="32" height="11" rx="3" fill="#0F1F3D" stroke="#C9A961" stroke-width="0.5" /><text x="12" y="-4" fill="#fff" font-family="Inter" font-size="7" font-weight="black" text-anchor="middle">VILLA #1</text></g>
+                  <circle cx="520" cy="113" r="12" fill="rgba(201,169,97,0.2)" class="animate-ping" /><circle cx="520" cy="113" r="5" fill="#C9A961" />
+                  <g transform="translate(520, 113) translate(-12, -32)" onclick="selectVehicle(2)"><path d="M12 0 C5.37 0 0 5.37 0 12 C0 21 12 32 12 32 C12 32 24 21 24 12 C24 5.37 18.63 0 12 0 Z" fill="#C9A961" filter="drop-shadow(0px 3px 5px rgba(0,0,0,0.5))" /><circle cx="12" cy="12" r="5" fill="#0F1F3D" /><rect x="-4" y="-12" width="32" height="11" rx="3" fill="#0F1F3D" stroke="#C9A961" stroke-width="0.5" /><text x="12" y="-4" fill="#fff" font-family="Inter" font-size="7" font-weight="black" text-anchor="middle">PENTHOUSE</text></g>
+                  <circle cx="180" cy="360" r="12" fill="rgba(201,169,97,0.2)" class="animate-ping" /><circle cx="180" cy="360" r="5" fill="#C9A961" />
+                  <g transform="translate(180, 360) translate(-12, -32)" onclick="selectVehicle(3)"><path d="M12 0 C5.37 0 0 5.37 0 12 C0 21 12 32 12 32 C12 32 24 21 24 12 C24 5.37 18.63 0 12 0 Z" fill="#C9A961" filter="drop-shadow(0px 3px 5px rgba(0,0,0,0.5))" /><circle cx="12" cy="12" r="5" fill="#0F1F3D" /><rect x="-4" y="-12" width="32" height="11" rx="3" fill="#0F1F3D" stroke="#C9A961" stroke-width="0.5" /><text x="12" y="-4" fill="#0F1F3D" font-family="Inter" font-size="7" font-weight="black" text-anchor="middle">COTTAGE</text></g>
+                </svg>
+                <div class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur border border-white/10 px-4 py-3 rounded-2xl flex justify-between items-center text-[10px] text-white/90">
+                  <div class="flex gap-4 flex-wrap"><span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#C9A961]"></span> Villa #1 (Active)</span><span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#C9A961]"></span> Penthouse (Active)</span><span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#C9A961]"></span> Cottage (Pending)</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col justify-between">
+              <div class="bg-white dark:bg-[#132339] border border-[#E8E2D6] dark:border-white/10 rounded-3xl p-5 shadow-sm space-y-4">
+                <div class="flex items-center gap-3 pb-3 border-b border-[#E8E2D6] dark:border-white/10">
+                  <div class="w-10 h-10 rounded-xl bg-[#C9A961]/20 text-[#C9A961] flex items-center justify-center"><i class="fa-solid fa-house"></i></div>
+                  <div><h4 id="vehicleName" class="font-bold text-sm">Villa #1</h4><span id="vehicleStatus" class="text-[9px] badge-active px-2 py-0.5 rounded font-black">Active</span></div>
+                </div>
+                <div class="space-y-3 text-xs">
+                  <div class="flex justify-between gap-4"><span class="text-dark/50 whitespace-nowrap">Agent</span><span id="vehicleInstructor" class="font-bold text-right">James Wilson</span></div>
+                  <div class="flex justify-between gap-4"><span class="text-dark/50 whitespace-nowrap">Client</span><span id="vehicleStudent" class="font-bold text-right">Sarah Mitchell</span></div>
+                  <div class="flex justify-between gap-4"><span class="text-dark/50 whitespace-nowrap">Location</span><span id="vehicleLocation" class="font-mono font-bold text-right">Beverly Hills, CA</span></div>
+                  <div class="flex justify-between gap-4"><span class="text-dark/50 whitespace-nowrap">Type</span><span id="vehicleLesson" class="font-bold text-right">Luxury Villa</span></div>
+                </div>
+              </div>
+              <div class="mt-4 flex flex-col gap-2 text-xs">
+                <button onclick="showToast('Message Sent', 'Message sent to agent.', 'fa-message')" class="w-full btn-gold py-3 rounded-xl flex items-center justify-center gap-2"><i class="fa-solid fa-message"></i> Message Agent</button>
+                <button onclick="showToast('Assignment', 'Property assignment form opened.', 'fa-user-plus')" class="w-full border border-[#E8E2D6] dark:border-white/10 hover:bg-[#FAF7F2] dark:hover:bg-[#0F1F3D] py-3 rounded-xl font-bold transition flex items-center justify-center gap-2"><i class="fa-solid fa-user-plus"></i> Reassign</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PANEL: SCHEDULE ===== -->
+      <section id="panel-calendar" class="hidden space-y-8">
+        <div class="bg-bg/20 dark:bg-[#132339] p-4 sm:p-6 md:p-8 rounded-[2.5rem] border border-[#E8E2D6] dark:border-white/10 shadow-sm">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div><span class="text-[#C9A961] font-bold text-xs uppercase tracking-widest">Schedule</span><h3 class="font-display font-bold text-2xl">Visit Calendar</h3></div>
+            <button onclick="showToast('New Visit', 'Visit form opened.', 'fa-plus')" class="btn-gold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5"><i class="fa-solid fa-plus"></i> New Visit</button>
+          </div>
+          <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 bg-white dark:bg-[#132339] border border-[#E8E2D6] dark:border-white/10 rounded-3xl p-6 shadow-sm">
+              <div class="flex justify-between items-center mb-6"><h4 class="font-bold text-base flex items-center gap-2"><i class="fa-regular fa-calendar text-[#C9A961]"></i> May 2026</h4><div class="flex gap-2"><button class="w-8 h-8 rounded-lg border hover:bg-[#FAF7F2] dark:hover:bg-[#0F1F3D]"><i class="fa-solid fa-chevron-left text-xs"></i></button><button class="w-8 h-8 rounded-lg border hover:bg-[#FAF7F2] dark:hover:bg-[#0F1F3D]"><i class="fa-solid fa-chevron-right text-xs"></i></button></div></div>
+              <div class="grid grid-cols-7 gap-1 text-center font-bold text-[10px] text-dark/40 uppercase tracking-wider mb-2"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div>
+              <div class="grid grid-cols-7 gap-2" id="calendarGrid"></div>
+            </div>
+            <div class="bg-white dark:bg-[#132339] border border-[#E8E2D6] dark:border-white/10 rounded-3xl p-5 shadow-sm">
+              <div class="flex justify-between items-center pb-3 border-b"><h4 class="font-bold text-sm">Visits</h4><span id="calSelectedDate" class="text-[10px] text-[#C9A961] font-bold bg-[#C9A961]/10 px-3 py-1 rounded-full">May 25</span></div>
+              <div id="scheduleList" class="space-y-4 max-h-[300px] overflow-y-auto pr-1 scrollbar-none mt-3"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PANEL: REVENUE ===== -->
+      <section id="panel-revenue" class="hidden space-y-8">
+        <div class="bg-bg/20 dark:bg-[#132339] p-4 sm:p-6 md:p-8 rounded-[2.5rem] border border-[#E8E2D6] dark:border-white/10 shadow-sm min-w-0 overflow-hidden">
+          <div class="flex justify-between items-center mb-6"><div><span class="text-[#C9A961] font-bold text-xs uppercase tracking-widest">Analytics</span><h3 class="font-display font-bold text-2xl">Revenue & Performance</h3></div></div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white dark:bg-[#132339] border border-[#E8E2D6] dark:border-white/10 rounded-3xl p-5 shadow-sm min-w-0 overflow-hidden"><h4 class="font-bold text-xs text-dark/70 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-chart-area text-[#C9A961]"></i> Monthly Revenue</h4><div id="revenueChart" class="w-full"></div></div>
+            <div class="bg-white dark:bg-[#132339] border border-[#E8E2D6] dark:border-white/10 rounded-3xl p-5 shadow-sm min-w-0 overflow-hidden"><h4 class="font-bold text-xs text-dark/70 uppercase tracking-wider flex items-center gap-1.5"><i class="fa-solid fa-chart-pie text-[#C9A961]"></i> Property Mix</h4><div id="packageChart" class="w-full"></div></div>
+          </div>
+          <div class="mt-8 bg-white dark:bg-[#132339] border border-[#E8E2D6] dark:border-white/10 rounded-3xl p-6 shadow-sm min-w-0 overflow-hidden">
+            <h4 class="font-bold text-base mb-4">Revenue by Service</h4>
+            <div class="overflow-x-auto scrollbar-none w-full">
+              <table class="w-full text-left text-xs font-semibold min-w-[500px]">
+                <thead><tr class="border-b text-dark/50"><th class="py-3 px-2">Service</th><th class="py-3 px-2">Bookings</th><th class="py-3 px-2">Revenue</th><th class="py-3 px-2">Growth</th></tr></thead>
+                <tbody class="divide-y">
+                  <tr><td class="py-3 px-2 font-bold">Buyer Representation</td><td>45</td><td class="text-[#C9A961] font-bold">$45,000</td><td class="text-green-500">+12%</td></tr>
+                  <tr><td class="py-3 px-2 font-bold">Seller Listing</td><td>28</td><td class="text-[#C9A961] font-bold">$39,200</td><td class="text-green-500">+8%</td></tr>
+                  <tr><td class="py-3 px-2 font-bold">Rental Management</td><td>32</td><td class="text-[#C9A961] font-bold">$44,800</td><td class="text-green-500">+15%</td></tr>
+                  <tr><td class="py-3 px-2 font-bold">Investment Advisory</td><td>18</td><td class="text-[#C9A961] font-bold">$28,800</td><td class="text-green-500">+5%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PANEL: AGENTS ===== -->
+      <section id="panel-instructors" class="hidden space-y-8">
+        <div class="bg-bg/20 dark:bg-[#132339] p-4 sm:p-6 md:p-8 rounded-[2.5rem] border border-[#E8E2D6] dark:border-white/10 shadow-sm">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div><span class="text-[#C9A961] font-bold text-xs uppercase tracking-widest">Team</span><h3 class="font-display font-bold text-2xl">Agents</h3></div>
+            <button onclick="showToast('Add Agent', 'New agent form opened.', 'fa-user-plus')" class="btn-gold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5"><i class="fa-solid fa-plus"></i> Add Agent</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white dark:bg-[#132339] p-6 rounded-3xl border border-[#E8E2D6] dark:border-white/10 shadow-sm flex flex-col h-full">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-14 h-14 min-w-[56px] rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);"><i class="fas fa-user-tie text-[#C9A961] text-xl"></i></div>
+                <div><h4 class="font-bold text-sm leading-tight">James Wilson</h4><p class="text-[10px] text-[#C9A961] font-bold uppercase leading-tight mt-1">Senior Agent</p></div>
+              </div>
+              <div class="space-y-1 text-xs text-dark/70 flex-grow"><p><i class="fa-regular fa-calendar w-4"></i> 9+ Years</p><p><i class="fa-solid fa-star w-4 text-amber-400"></i> 4.9 Rating</p><p><i class="fa-solid fa-house w-4"></i> Luxury Homes</p></div>
+              <div class="flex gap-2 pt-4 mt-4 border-t border-[#E8E2D6] dark:border-white/10"><button onclick="showToast('Message', 'Message sent.', 'fa-message')" class="flex-1 bg-[#FAF7F2] dark:bg-white/10 py-2 rounded-xl text-[10px] font-bold">Message</button><button onclick="showToast('Schedule', 'Schedule view opened.', 'fa-calendar')" class="flex-1 bg-[#C9A961]/10 text-[#C9A961] py-2 rounded-xl text-[10px] font-bold">Schedule</button></div>
+            </div>
+            <div class="bg-white dark:bg-[#132339] p-6 rounded-3xl border border-[#E8E2D6] dark:border-white/10 shadow-sm flex flex-col h-full">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-14 h-14 min-w-[56px] rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);"><i class="fas fa-user-tie text-[#C9A961] text-xl"></i></div>
+                <div><h4 class="font-bold text-sm leading-tight">Emily Watson</h4><p class="text-[10px] text-[#C9A961] font-bold uppercase leading-tight mt-1">Luxury Specialist</p></div>
+              </div>
+              <div class="space-y-1 text-xs text-dark/70 flex-grow"><p><i class="fa-regular fa-calendar w-4"></i> 7+ Years</p><p><i class="fa-solid fa-star w-4 text-amber-400"></i> 4.8 Rating</p><p><i class="fa-solid fa-shield w-4"></i> Luxury Estates</p></div>
+              <div class="flex gap-2 pt-4 mt-4 border-t border-[#E8E2D6] dark:border-white/10"><button onclick="showToast('Message', 'Message sent.', 'fa-message')" class="flex-1 bg-[#FAF7F2] dark:bg-white/10 py-2 rounded-xl text-[10px] font-bold">Message</button><button onclick="showToast('Schedule', 'Schedule view opened.', 'fa-calendar')" class="flex-1 bg-[#C9A961]/10 text-[#C9A961] py-2 rounded-xl text-[10px] font-bold">Schedule</button></div>
+            </div>
+            <div class="bg-white dark:bg-[#132339] p-6 rounded-3xl border border-[#E8E2D6] dark:border-white/10 shadow-sm flex flex-col h-full">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-14 h-14 min-w-[56px] rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);"><i class="fas fa-user-tie text-[#C9A961] text-xl"></i></div>
+                <div><h4 class="font-bold text-sm leading-tight">Michael Park</h4><p class="text-[10px] text-[#C9A961] font-bold uppercase leading-tight mt-1">Investment Advisor</p></div>
+              </div>
+              <div class="space-y-1 text-xs text-dark/70 flex-grow"><p><i class="fa-regular fa-calendar w-4"></i> 6+ Years</p><p><i class="fa-solid fa-star w-4 text-amber-400"></i> 4.9 Rating</p><p><i class="fa-solid fa-chart-line w-4"></i> Investment Advisory</p></div>
+              <div class="flex gap-2 pt-4 mt-4 border-t border-[#E8E2D6] dark:border-white/10"><button onclick="showToast('Message', 'Message sent.', 'fa-message')" class="flex-1 bg-[#FAF7F2] dark:bg-white/10 py-2 rounded-xl text-[10px] font-bold">Message</button><button onclick="showToast('Schedule', 'Schedule view opened.', 'fa-calendar')" class="flex-1 bg-[#C9A961]/10 text-[#C9A961] py-2 rounded-xl text-[10px] font-bold">Schedule</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PANEL: CLIENTS ===== -->
+      <section id="panel-students" class="hidden space-y-8">
+        <div class="bg-bg/20 dark:bg-[#132339] p-4 sm:p-6 md:p-8 rounded-[2.5rem] border border-[#E8E2D6] dark:border-white/10 shadow-sm">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div><span class="text-[#C9A961] font-bold text-xs uppercase tracking-widest">Directory</span><h3 class="font-display font-bold text-2xl">Clients</h3></div>
+            <div class="flex gap-2"><input type="text" placeholder="Search..." class="bg-white dark:bg-[#132339] border border-[#E8E2D6] dark:border-white/15 rounded-xl px-4 py-2 text-xs focus:ring-1 focus:ring-[#C9A961]"><button onclick="showToast('Search', 'Results loaded.', 'fa-search')" class="btn-gold px-4 py-2 rounded-xl text-xs">Search</button></div>
+          </div>
+          <div class="overflow-x-auto scrollbar-none">
+            <table class="w-full text-left text-xs font-semibold min-w-[700px]">
+              <thead><tr class="border-b text-dark/50"><th class="py-3 px-2">Client</th><th class="py-3 px-2">Visits</th><th class="py-3 px-2">Agent</th><th class="py-3 px-2">Status</th></tr></thead>
+              <tbody class="divide-y">
+                <tr><td class="py-3 px-2 font-bold">Sarah Mitchell</td><td>8 / 12</td><td>James Wilson</td><td><span class="badge-active text-[9px] font-black px-2 py-0.5 rounded-full">Active</span></td></tr>
+                <tr><td class="py-3 px-2 font-bold">David Kim</td><td>5 / 10</td><td>Emily Watson</td><td><span class="badge-active text-[9px] font-black px-2 py-0.5 rounded-full">Active</span></td></tr>
+                <tr><td class="py-3 px-2 font-bold">Jessica Park</td><td>11 / 12</td><td>Michael Park</td><td><span class="badge-pending text-[9px] font-black px-2 py-0.5 rounded-full">Pending</span></td></tr>
+                <tr><td class="py-3 px-2 font-bold">Mark Thompson</td><td>4 / 10</td><td>James Wilson</td><td><span class="badge-active text-[9px] font-black px-2 py-0.5 rounded-full">Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PANEL: INVENTORY ===== -->
+      <section id="panel-inventory" class="hidden space-y-8">
+        <div class="bg-bg/20 dark:bg-[#132339] p-4 sm:p-6 md:p-8 rounded-[2.5rem] border border-[#E8E2D6] dark:border-white/10 shadow-sm">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div><span class="text-[#C9A961] font-bold text-xs uppercase tracking-widest">Stock</span><h3 class="font-display font-bold text-2xl">Property Inventory</h3></div>
+            <button onclick="showToast('Add Property', 'New property form opened.', 'fa-house')" class="btn-gold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5"><i class="fa-solid fa-plus"></i> Add Property</button>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white dark:bg-[#132339] p-4 rounded-2xl border text-center"><p class="text-[10px] text-dark/50 uppercase font-black">Villas</p><p class="text-xl font-bold">4 <span class="text-xs text-dark/40">units</span></p><span class="text-[9px] text-green-500 font-bold">Available</span></div>
+            <div class="bg-white dark:bg-[#132339] p-4 rounded-2xl border text-center"><p class="text-[10px] text-dark/50 uppercase font-black">Apartments</p><p class="text-xl font-bold">3 <span class="text-xs text-dark/40">units</span></p><span class="text-[9px] text-green-500 font-bold">Available</span></div>
+            <div class="bg-white dark:bg-[#132339] p-4 rounded-2xl border text-center"><p class="text-[10px] text-dark/50 uppercase font-black">Family Homes</p><p class="text-xl font-bold">2 <span class="text-xs text-dark/40">units</span></p><span class="text-[9px] text-amber-500 font-bold">Low Stock</span></div>
+            <div class="bg-white dark:bg-[#132339] p-4 rounded-2xl border text-center"><p class="text-[10px] text-dark/50 uppercase font-black">Condos</p><p class="text-xl font-bold">1 <span class="text-xs text-dark/40">units</span></p><span class="text-[9px] text-amber-500 font-bold">Low Stock</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PANEL: REPORTS ===== -->
+      <section id="panel-reports" class="hidden space-y-8">
+        <div class="bg-[#0F1F3D] text-white text-center rounded-[2.5rem] border border-white/5 shadow-xl p-8 sm:p-12 relative overflow-hidden min-h-[300px] flex flex-col justify-center items-center">
+          <div class="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-20" style="background:radial-gradient(circle, #C9A961 0%, transparent 70%);"></div>
+          <div class="relative z-10 space-y-4 max-w-xl">
+            <span class="text-[#C9A961] font-bold text-xs uppercase tracking-widest bg-white/10 px-4 py-2 rounded-full border border-white/5 inline-block">Reports</span>
+            <h3 class="text-2xl font-display font-bold text-[#C9A961]">Generate Reports</h3>
+            <p class="text-white/70 text-xs max-w-md mx-auto">Access comprehensive reports on revenue, client progress, agent performance, and property usage.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 pt-4">
+              <button onclick="showToast('Report', 'Revenue report downloaded.', 'fa-file-pdf')" class="btn-gold px-6 py-3.5 rounded-xl text-[10px] uppercase tracking-wider"><i class="fa-solid fa-file-pdf mr-2"></i> Revenue Report</button>
+              <button onclick="showToast('Report', 'Client report downloaded.', 'fa-file-csv')" class="border border-white/20 hover:bg-white/10 text-white px-6 py-3.5 rounded-xl font-bold uppercase text-[10px] transition"><i class="fa-solid fa-file-csv mr-2"></i> Client Report</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-white/80 dark:bg-[#132339]/80 backdrop-blur-xl border-t border-[#E8E2D6] dark:border-white/10 py-4 px-6 text-center text-[10px] text-dark/40 dark:text-white/30">
+      &copy; 2026 EstateHub • Premium Real Estate Agency & Property Portal
+    </footer>
+  </main>
+</div>
+
+<script>
+  // ---- SIDEBAR ----
+  function toggleSidebar() {
+    const s = document.getElementById('sidebar'), o = document.getElementById('sidebarOverlay');
+    if (s.classList.contains('-translate-x-full')) { s.classList.remove('-translate-x-full'); s.classList.add('translate-x-0'); o.classList.remove('hidden'); o.classList.remove('opacity-0'); o.classList.add('opacity-100'); document.body.style.overflow='hidden'; }
+    else { s.classList.remove('translate-x-0'); s.classList.add('-translate-x-full'); o.classList.remove('opacity-100'); o.classList.add('opacity-0'); document.body.style.overflow=''; setTimeout(()=>o.classList.add('hidden'),300); }
+  }
+
+  // ---- TABS ----
+  function switchTab(id) {
+    const panels = ['dispatch','calendar','revenue','instructors','students','inventory','reports'];
+    panels.forEach(p => { const el = document.getElementById('panel-'+p); if(el) el.classList.add('hidden'); });
+    const target = document.getElementById('panel-'+id); if(target) target.classList.remove('hidden');
+    const btns = document.querySelectorAll('.tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    const active = document.getElementById('tab-'+id); if(active) active.classList.add('active');
+    const map = { dispatch:'Property Map', calendar:'Schedule', revenue:'Revenue', instructors:'Agents', students:'Clients', inventory:'Inventory', reports:'Reports' };
+    document.getElementById('currentTabLabel').innerText = map[id] || 'Property Map';
+    if (window.innerWidth < 1024) { const s=document.getElementById('sidebar'), o=document.getElementById('sidebarOverlay'); if(s && !s.classList.contains('-translate-x-full')) { s.classList.remove('translate-x-0'); s.classList.add('-translate-x-full'); o.classList.remove('opacity-100'); o.classList.add('opacity-0'); document.body.style.overflow=''; setTimeout(()=>o.classList.add('hidden'),300); } }
+    setTimeout(() => { if (id === 'revenue') { if (window.revenueChart) window.revenueChart.render(); if (window.packageChart) window.packageChart.render(); } }, 100);
+  }
+
+  // ---- PROPERTY SELECT ----
+  const vehicleData = {
+    1: { name: 'Villa #1', status: 'Active', instructor: 'James Wilson', student: 'Sarah Mitchell', location: 'Beverly Hills, CA', lesson: 'Luxury Villa' },
+    2: { name: 'Penthouse', status: 'Active', instructor: 'Emily Watson', student: 'David Kim', location: 'Manhattan, NY', lesson: 'Skyline Penthouse' },
+    3: { name: 'Cottage', status: 'Pending', instructor: '—', student: '—', location: 'Portland, OR', lesson: 'Riverside Cottage' }
+  };
+  function selectVehicle(id) {
+    const d = vehicleData[id]; if(!d) return;
+    document.getElementById('vehicleName').innerText = d.name;
+    const badge = document.getElementById('vehicleStatus');
+    badge.innerText = d.status;
+    badge.className = d.status === 'Active' ? 'text-[9px] badge-active px-2 py-0.5 rounded font-black' : 'text-[9px] badge-pending px-2 py-0.5 rounded font-black';
+    document.getElementById('vehicleInstructor').innerText = d.instructor;
+    document.getElementById('vehicleStudent').innerText = d.student;
+    document.getElementById('vehicleLocation').innerText = d.location;
+    document.getElementById('vehicleLesson').innerText = d.lesson;
+    showToast('Property Selected', `${d.name} details loaded.`, 'fa-house');
+  }
+  function simulateGPS() { showToast('Refreshed', 'All property details refreshed.', 'fa-rotate'); }
+
+  // ---- CALENDAR ----
+  function initCalendar() {
+    const grid = document.getElementById('calendarGrid'); if(!grid) return;
+    grid.innerHTML = '';
+    for(let i=0; i<4; i++){ const d=document.createElement('div'); d.className='aspect-square bg-transparent'; grid.appendChild(d); }
+    const bookings = { 5:[{time:'09:00',student:'Michael',lesson:'First Viewing'}], 12:[{time:'14:30',student:'Sarah',lesson:'Financing'}], 18:[{time:'10:15',student:'Olivia',lesson:'Inspection'}], 25:[{time:'10:00',student:'Sarah',lesson:'Beverly Hills'},{time:'11:45',student:'Mark',lesson:'Downtown'},{time:'13:15',student:'James',lesson:'Suburban'}], 28:[{time:'11:30',student:'Clara',lesson:'Negotiation'}] };
+    for(let d=1; d<=31; d++){
+      const btn = document.createElement('button');
+      const has = bookings[d];
+      btn.className = `aspect-square rounded-xl text-[11px] font-black transition flex flex-col items-center justify-center relative hover:bg-[#FAF7F2] text-dark dark:text-white ${d===25?'bg-[#C9A961] text-white shadow-sm ring-2 ring-[#C9A961]/30':''}`;
+      btn.innerHTML = `<span>${d}</span>${has ? `<span class="absolute bottom-1.5 w-1.5 h-1.5 rounded-full bg-[#C9A961] animate-pulse"></span>` : ''}`;
+      btn.onclick = ()=>{
+        document.getElementById('calSelectedDate').innerText = `May ${d}`;
+        const all = grid.querySelectorAll('button');
+        all.forEach(b => { b.classList.remove('bg-[#C9A961]','text-white','shadow-sm','ring-2','ring-[#C9A961]/30'); b.classList.add('text-dark','dark:text-white'); });
+        btn.classList.add('bg-[#C9A961]','text-white','shadow-sm','ring-2','ring-[#C9A961]/30');
+        btn.classList.remove('text-dark','dark:text-white');
+        loadSchedule(d, bookings[d]);
+      };
+      grid.appendChild(btn);
+    }
+    loadSchedule(25, bookings[25]);
+  }
+  function loadSchedule(day, list) {
+    const container = document.getElementById('scheduleList'); if(!container) return;
+    container.innerHTML = '';
+    if(!list || list.length===0){ container.innerHTML = '<div class="py-12 text-center text-dark/40"><i class="fa-regular fa-calendar-xmark text-3xl"></i><p class="text-[10px] font-bold mt-2">No Visits</p></div>'; return; }
+    list.forEach(s => {
+      const el = document.createElement('div');
+      el.className = 'p-3 bg-[#FAF7F2] dark:bg-[#0F1F3D]/40 rounded-2xl border border-[#E8E2D6] dark:border-white/5 space-y-1 text-left';
+      el.innerHTML = `<div class="flex justify-between text-[10px]"><span class="font-bold text-[#C9A961]">${s.time}</span><span class="bg-[#C9A961]/10 text-[#C9A961] px-2 py-0.5 rounded text-[8px] font-black">${s.student}</span></div><h5 class="text-xs font-bold">${s.lesson}</h5>`;
+      container.appendChild(el);
+    });
+  }
+
+  // ---- TOAST ----
+  function showToast(title, msg, icon='fa-home') {
+    const d = document.createElement('div');
+    d.className = 'fixed bottom-6 right-6 z-50 bg-white/95 dark:bg-[#132339]/95 backdrop-blur-xl border border-[#C9A961]/30 p-4 rounded-2xl shadow-2xl flex items-center gap-3.5 max-w-sm transition-all duration-500 transform translate-y-20 opacity-0';
+    d.innerHTML = `<div class="w-10 h-10 rounded-xl bg-[#C9A961]/10 text-[#C9A961] flex items-center justify-center text-lg"><i class="fa-solid ${icon}"></i></div><div><h5 class="text-xs font-bold text-dark dark:text-white">${title}</h5><p class="text-[10px] text-dark/70 dark:text-white/60">${msg}</p></div>`;
+    document.body.appendChild(d);
+    requestAnimationFrame(() => { d.classList.remove('translate-y-20','opacity-0'); d.classList.add('translate-y-0','opacity-100'); });
+    setTimeout(() => { d.classList.remove('translate-y-0','opacity-100'); d.classList.add('translate-y-20','opacity-0'); setTimeout(()=>d.remove(),500); }, 3500);
+  }
+
+  // ---- NOTIFICATIONS ----
+  function toggleNotifications(e) { e.stopPropagation(); document.getElementById('notifDropdown').classList.toggle('hidden'); }
+  document.addEventListener('click', () => { const el=document.getElementById('notifDropdown'); if(el) el.classList.add('hidden'); });
+
+  // ---- DARK / RTL ----
+  function toggleDarkMode() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark')?'dark':'light'); }
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+  function toggleDir() { const dir = document.documentElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; document.documentElement.setAttribute('dir', dir); localStorage.setItem('dir', dir); document.getElementById('dirToggle').innerText = dir.toUpperCase(); }
+  const sd = localStorage.getItem('dir'); if(sd==='rtl'){ document.documentElement.setAttribute('dir','rtl'); document.getElementById('dirToggle').innerText='RTL'; } else { document.documentElement.setAttribute('dir','ltr'); document.getElementById('dirToggle').innerText='LTR'; }
+
+  // ---- CHARTS ----
+  document.addEventListener('DOMContentLoaded', () => {
+    initCalendar();
+    const rc = new ApexCharts(document.querySelector('#revenueChart'), {
+      chart: { type: 'area', height: 240, toolbar: { show: false }, fontFamily: 'Inter' },
+      series: [{ name: 'Revenue', data: [32000,38000,42000,48000,55240] }],
+      colors: ['#C9A961'], stroke: { curve: 'smooth', width: 2.5 },
+      xaxis: { categories: ['Jan','Feb','Mar','Apr','May'], labels: { style: { colors: '#94a3b8', fontSize:'9px', fontWeight:600 } } },
+      yaxis: { labels: { style: { colors: '#94a3b8', fontSize:'9px', fontWeight:600 }, formatter: v => '$'+v } },
+      grid: { borderColor: 'rgba(201,169,97,0.08)', strokeDashArray: 3 },
+      tooltip: { theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light' }
+    });
+    rc.render(); window.revenueChart = rc;
+
+    const pc = new ApexCharts(document.querySelector('#packageChart'), {
+      chart: { type: 'donut', height: 240, fontFamily: 'Inter' },
+      series: [40, 35, 25],
+      labels: ['Villas', 'Apartments', 'Family Homes'],
+      colors: ['#C9A961', '#C9A961', '#C9A961'],
+      dataLabels: { enabled: false },
+      legend: { position: 'bottom', horizontalAlign: 'center', labels: { colors: '#94a3b8' }, fontSize:'10px', fontWeight:600 },
+      plotOptions: { pie: { donut: { size: '70%', labels: { show: true, name: { show: true, color:'#94a3b8', fontSize:'9px' }, value: { show: true, color:'#C9A961', fontSize:'16px', fontWeight:900 }, total: { show: true, label: 'Properties', color:'#94a3b8', fontSize:'9px' } } } } },
+      tooltip: { theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light' }
+    });
+    pc.render(); window.packageChart = pc;
+
+    // make functions global
+    window.toggleSidebar = toggleSidebar;
+    window.switchTab = switchTab;
+    window.selectVehicle = selectVehicle;
+    window.simulateGPS = simulateGPS;
+    window.showToast = showToast;
+    window.toggleNotifications = toggleNotifications;
+  });
+</script>
+</body>
+</html>
+
+
+
+
