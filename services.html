@@ -202,26 +202,51 @@
             padding-left: 1.75rem;
         }
 
-        .book-btn {
+        .book-btn, .btn-primary {
             background: linear-gradient(135deg, #C9A961, #E0C28A);
-            color: #0F1F3D;
+            color: #0F1F3D !important;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 14px -2px rgba(201, 169, 97, 0.35);
         }
-        .book-btn::before {
+        .book-btn::before, .btn-primary::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
             transition: left 0.6s ease;
         }
-        .book-btn:hover::before { left: 100%; }
-        .book-btn:hover {
+        .book-btn:hover::before, .btn-primary:hover::before { left: 100%; }
+        .book-btn:hover, .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.55);
+            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.6);
+            filter: brightness(1.03);
+        }
+
+        .btn-outline, .btn-secondary {
+            background: transparent;
+            color: var(--color-primary-text);
+            border: 1px solid var(--color-border);
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-outline:hover, .btn-secondary:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold) !important;
+            background: rgba(201, 169, 97, 0.08);
+            transform: translateY(-2px);
         }
 
         .icon-btn {
@@ -411,6 +436,7 @@
                     <a href="services.html" class="nav-link active">Service</a>
                     <a href="rent.html" class="nav-link">Rent</a>
                     <a href="buy.html" class="nav-link">Buy</a>
+                    <a href="agents.html" class="nav-link">Agents</a>
                     <a href="contact.html" class="nav-link">Contact</a>
 
                     <div class="dropdown-wrapper">
@@ -476,6 +502,7 @@
                     <a href="services.html" class="py-3 px-3 rounded-xl font-medium text-[#C9A961] bg-hover transition">Service</a>
                     <a href="rent.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Rent</a>
                     <a href="buy.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Buy</a>
+                    <a href="agents.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Agents</a>
                     <a href="contact.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Contact</a>
 
                     <div>
@@ -516,9 +543,9 @@
         <div class="absolute inset-0">
             <img src="assets/s.jpg"
                  alt="EstateHub real estate services"
-                 class="w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0F1F3D]/90 via-[#0F1F3D]/75 to-[#1E3A5F]/90"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-transparent"></div>
+                 class="w-full h-full object-cover opacity-85 sm:opacity-90 transition-opacity duration-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0F1F3D]/90 via-[#0F1F3D]/55 to-[#0F1F3D]/25"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-[#0F1F3D]/30"></div>
         </div>
 
         <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
@@ -542,9 +569,20 @@
                     <a href="#buying" class="book-btn px-7 py-3.5 rounded-full text-sm font-bold inline-flex items-center gap-2">
                         Explore Services <i class="fas fa-arrow-down text-xs"></i>
                     </a>
-                    <a href="contact.html" class="px-7 py-3.5 rounded-full text-sm font-semibold border border-white/30 text-white hover:border-[#C9A961] hover:text-[#E0C28A] transition inline-flex items-center gap-2">
+                    <a href="contact.html" class="btn-outline px-7 py-3.5 rounded-full text-sm font-semibold text-white border-white/30 hover:border-[#C9A961] hover:text-[#E0C28A] transition inline-flex items-center gap-2">
                         <i class="fas fa-phone"></i> Book a Consultation
                     </a>
+                </div>
+
+                <!-- Quick Jump Navigation -->
+                <div class="flex flex-wrap items-center gap-2 mt-6">
+                    <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold mr-1">Quick Jump:</span>
+                    <a href="#buying" class="px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 text-white border border-white/15 hover:border-[#C9A961] hover:text-[#C9A961] transition">Buying</a>
+                    <a href="#selling" class="px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 text-white border border-white/15 hover:border-[#C9A961] hover:text-[#C9A961] transition">Selling</a>
+                    <a href="#rental" class="px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 text-white border border-white/15 hover:border-[#C9A961] hover:text-[#C9A961] transition">Rentals</a>
+                    <a href="#consultation" class="px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 text-white border border-white/15 hover:border-[#C9A961] hover:text-[#C9A961] transition">Consultation</a>
+                    <a href="#site-visit" class="px-3 py-1.5 rounded-full text-xs font-medium bg-[#C9A961]/20 text-[#E0C28A] border border-[#C9A961]/40 hover:bg-[#C9A961] hover:text-[#0F1F3D] transition">Book Site Visit</a>
+                    <a href="agents.html" class="px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 text-white border border-white/15 hover:border-[#C9A961] hover:text-[#C9A961] transition">Find Agent</a>
                 </div>
             </div>
         </div>
@@ -672,7 +710,7 @@
     <!-- ============================================================
          SECTION 3 • SELLING SERVICES
     ============================================================ -->
-    <section class="section-pad bg-hover transition-colors">
+    <section id="selling" class="section-pad bg-hover transition-colors">
         <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                 <!-- Content side -->
@@ -756,7 +794,7 @@
     <!-- ============================================================
          SECTION 4 • RENTAL SERVICES
     ============================================================ -->
-    <section class="section-pad bg-background transition-colors">
+    <section id="rental" class="section-pad bg-background transition-colors">
         <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
                 <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Rental Services</span>
@@ -821,7 +859,7 @@
     <!-- ============================================================
          SECTION 5 • PROPERTY CONSULTATION
     ============================================================ -->
-    <section class="section-pad bg-navy-gradient transition-colors relative overflow-hidden">
+    <section id="consultation" class="section-pad bg-navy-gradient transition-colors relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-3xl" style="background:radial-gradient(circle, rgba(201,169,97,0.12) 0%, transparent 70%);"></div>
         <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-3xl" style="background:radial-gradient(circle, rgba(201,169,97,0.1) 0%, transparent 70%);"></div>
 
@@ -880,7 +918,7 @@
     <!-- ============================================================
          SECTION 6 • SITE VISIT BOOKING
     ============================================================ -->
-    <section class="section-pad bg-background transition-colors">
+    <section id="site-visit" class="section-pad bg-background transition-colors">
         <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
                 <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Site Visit Booking</span>

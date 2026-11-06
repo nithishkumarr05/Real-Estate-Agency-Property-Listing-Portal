@@ -201,26 +201,51 @@
             padding-left: 1.75rem;
         }
 
-        .book-btn {
+        .book-btn, .btn-primary {
             background: linear-gradient(135deg, #C9A961, #E0C28A);
-            color: #0F1F3D;
+            color: #0F1F3D !important;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 14px -2px rgba(201, 169, 97, 0.35);
         }
-        .book-btn::before {
+        .book-btn::before, .btn-primary::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
             transition: left 0.6s ease;
         }
-        .book-btn:hover::before { left: 100%; }
-        .book-btn:hover {
+        .book-btn:hover::before, .btn-primary:hover::before { left: 100%; }
+        .book-btn:hover, .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.55);
+            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.6);
+            filter: brightness(1.03);
+        }
+
+        .btn-outline, .btn-secondary {
+            background: transparent;
+            color: var(--color-primary-text);
+            border: 1px solid var(--color-border);
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-outline:hover, .btn-secondary:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold) !important;
+            background: rgba(201, 169, 97, 0.08);
+            transform: translateY(-2px);
         }
 
         .icon-btn {
@@ -404,6 +429,7 @@
                     <a href="services.html" class="nav-link">Service</a>
                     <a href="rent.html" class="nav-link">Rent</a>
                     <a href="buy.html" class="nav-link">Buy</a>
+                    <a href="agents.html" class="nav-link">Agents</a>
                     <a href="contact.html" class="nav-link">Contact</a>
 
                     <div class="dropdown-wrapper">
@@ -469,6 +495,7 @@
                     <a href="services.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Service</a>
                     <a href="rent.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Rent</a>
                     <a href="buy.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Buy</a>
+                    <a href="agents.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Agents</a>
                     <a href="contact.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Contact</a>
 
                     <div>
@@ -509,9 +536,9 @@
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80"
                  alt="Modern property listings"
-                 class="w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0F1F3D]/92 via-[#0F1F3D]/75 to-[#1E3A5F]/88"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-transparent"></div>
+                 class="w-full h-full object-cover opacity-85 sm:opacity-90 transition-opacity duration-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0F1F3D]/90 via-[#0F1F3D]/55 to-[#0F1F3D]/25"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-[#0F1F3D]/30"></div>
         </div>
 
         <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full">
@@ -531,6 +558,23 @@
                 <p class="text-gray-300 text-sm sm:text-base lg:text-lg xl:text-xl max-w-2xl leading-relaxed mb-8 sm:mb-10 font-light">
                     Discover, list, and manage properties — a complete real estate marketplace for buyers, sellers, renters, and agents.
                 </p>
+
+                <!-- Primary CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-3 sm:gap-4 mb-7 sm:mb-8">
+                    <a href="buy.html" class="book-btn px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold shadow-xl inline-flex items-center gap-2">
+                        <i class="fas fa-compass text-xs"></i>
+                        <span>Explore Properties</span>
+                        <i class="fas fa-arrow-right text-[11px] ml-1"></i>
+                    </a>
+                    <a href="signup.html" class="btn-outline px-5 sm:px-7 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-semibold text-white border-white/30 hover:border-[#C9A961] hover:text-[#C9A961] inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm">
+                        <i class="fas fa-plus-circle text-[#C9A961]"></i>
+                        <span>List Your Property</span>
+                    </a>
+                    <a href="agents.html" class="btn-outline px-5 sm:px-6 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-semibold text-white border-white/20 hover:border-[#C9A961] hover:text-[#C9A961] inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm">
+                        <i class="fas fa-user-tie text-[#C9A961]"></i>
+                        <span>Find Agents</span>
+                    </a>
+                </div>
 
                 <!-- Search Box -->
                 <div class="search-box max-w-2xl mb-8">
@@ -645,8 +689,8 @@
                     <div class="flex flex-wrap items-center justify-between gap-4">
                         <p class="font-display text-2xl sm:text-3xl font-bold text-[#C9A961]">$4.85M</p>
                         <div class="flex gap-2">
-                            <button class="text-xs font-bold text-primary-text px-4 py-2.5 rounded-full border border-border hover:border-[#C9A961] hover:text-[#C9A961] transition">Save</button>
-                            <a href="#" class="book-btn text-xs px-5 py-2.5 rounded-full">View Details</a>
+                            <a href="contact.html?property=Beverly+Hills+Modern+Villa" class="btn-outline text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 font-semibold"><i class="fas fa-envelope text-[11px]"></i> Contact Agent</a>
+                            <a href="buy.html" class="book-btn text-xs px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 font-bold">View Details <i class="fas fa-arrow-right text-[10px]"></i></a>
                         </div>
                     </div>
                 </div>
@@ -684,8 +728,8 @@
                     <div class="flex flex-wrap items-center justify-between gap-4">
                         <p class="font-display text-2xl sm:text-3xl font-bold text-[#C9A961]">$3.2M</p>
                         <div class="flex gap-2">
-                            <button class="text-xs font-bold text-primary-text px-4 py-2.5 rounded-full border border-border hover:border-[#C9A961] hover:text-[#C9A961] transition">Save</button>
-                            <a href="#" class="book-btn text-xs px-5 py-2.5 rounded-full">View Details</a>
+                            <a href="contact.html?property=Downtown+Skyline+Penthouse" class="btn-outline text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 font-semibold"><i class="fas fa-envelope text-[11px]"></i> Contact Agent</a>
+                            <a href="rent.html" class="book-btn text-xs px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 font-bold">View Details <i class="fas fa-arrow-right text-[10px]"></i></a>
                         </div>
                     </div>
                 </div>
@@ -723,8 +767,8 @@
                     <div class="flex flex-wrap items-center justify-between gap-4">
                         <p class="font-display text-2xl sm:text-3xl font-bold text-[#C9A961]">$520K</p>
                         <div class="flex gap-2">
-                            <button class="text-xs font-bold text-primary-text px-4 py-2.5 rounded-full border border-border hover:border-[#C9A961] hover:text-[#C9A961] transition">Save</button>
-                            <a href="#" class="book-btn text-xs px-5 py-2.5 rounded-full">View Details</a>
+                            <a href="contact.html?property=Riverside+Cottage" class="btn-outline text-xs px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 font-semibold"><i class="fas fa-envelope text-[11px]"></i> Contact Agent</a>
+                            <a href="buy.html" class="book-btn text-xs px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 font-bold">View Details <i class="fas fa-arrow-right text-[10px]"></i></a>
                         </div>
                     </div>
                 </div>
@@ -760,38 +804,143 @@
 
             <!-- Category grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-                <a href="buy.html" class="group bg-card border border-border rounded-2xl p-6 hover:border-[#C9A961] hover:shadow-lg transition-all duration-300 category-card" data-category="villas for-sale">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-building text-[#C9A961] text-xl"></i>
+
+                <!-- Category 1: Luxury Villas -->
+                <a href="buy.html" class="group bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-2xl transition-all duration-300 flex flex-col justify-between category-card" data-category="villas for-sale">
+                    <div>
+                        <div class="relative h-48 sm:h-52 overflow-hidden bg-[#0F1F3D]">
+                            <img src="assets/category_villas.jpg" alt="Luxury Villas" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/80 via-[#0F1F3D]/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-[#0F1F3D]/80 backdrop-blur-md text-[#E0C28A] border border-[#C9A961]/40 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                                420+ Villas
+                            </span>
+                            <span class="absolute top-3 right-3 bg-emerald-500/90 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+                                For Sale
+                            </span>
+                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                                <span class="text-xs font-semibold text-gray-200">From $1.25M</span>
+                                <span class="text-[10px] text-[#E0C28A] font-semibold flex items-center gap-1">
+                                    <i class="fas fa-location-dot text-[9px]"></i> Prime Areas
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary-text group-hover:text-[#C9A961] transition-colors mb-1.5">Luxury Villas</h3>
+                            <p class="text-xs text-secondary-text leading-relaxed">Modern architectural waterfront villas, private infinity pools &amp; exclusive gated compounds.</p>
+                        </div>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-1">Luxury Villas</h3>
-                    <p class="text-xs text-secondary-text mb-3">420+ properties</p>
-                    <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
-                </a>
-                <a href="rent.html" class="group bg-card border border-border rounded-2xl p-6 hover:border-[#C9A961] hover:shadow-lg transition-all duration-300 category-card" data-category="apartments for-rent">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-city text-[#C9A961] text-xl"></i>
+                    <div class="p-5 pt-0">
+                        <div class="pt-3 border-t border-border flex items-center justify-between">
+                            <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                                Explore Villas <i class="fas fa-arrow-right text-[10px]"></i>
+                            </span>
+                            <span class="text-[10px] uppercase font-bold text-secondary-text tracking-wider">Verified</span>
+                        </div>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-1">City Apartments</h3>
-                    <p class="text-xs text-secondary-text mb-3">860+ properties</p>
-                    <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
                 </a>
-                <a href="buy.html" class="group bg-card border border-border rounded-2xl p-6 hover:border-[#C9A961] hover:shadow-lg transition-all duration-300 category-card" data-category="family-homes for-sale">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-house text-[#C9A961] text-xl"></i>
+
+                <!-- Category 2: City Apartments -->
+                <a href="rent.html" class="group bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-2xl transition-all duration-300 flex flex-col justify-between category-card" data-category="apartments for-rent">
+                    <div>
+                        <div class="relative h-48 sm:h-52 overflow-hidden bg-[#0F1F3D]">
+                            <img src="assets/category_apartments.jpg" alt="City Apartments" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/80 via-[#0F1F3D]/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-[#0F1F3D]/80 backdrop-blur-md text-[#E0C28A] border border-[#C9A961]/40 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                                860+ Apartments
+                            </span>
+                            <span class="absolute top-3 right-3 bg-[#C9A961] text-[#0F1F3D] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+                                For Rent
+                            </span>
+                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                                <span class="text-xs font-semibold text-gray-200">From $2,400/mo</span>
+                                <span class="text-[10px] text-[#E0C28A] font-semibold flex items-center gap-1">
+                                    <i class="fas fa-city text-[9px]"></i> Downtown
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary-text group-hover:text-[#C9A961] transition-colors mb-1.5">City Apartments</h3>
+                            <p class="text-xs text-secondary-text leading-relaxed">Metropolitan high-rises with skyline balconies, 24/7 concierge &amp; premium city center amenities.</p>
+                        </div>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-1">Family Homes</h3>
-                    <p class="text-xs text-secondary-text mb-3">620+ properties</p>
-                    <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
-                </a>
-                <a href="rent.html" class="group bg-card border border-border rounded-2xl p-6 hover:border-[#C9A961] hover:shadow-lg transition-all duration-300 category-card" data-category="studios condos for-rent">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-4" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-door-open text-[#C9A961] text-xl"></i>
+                    <div class="p-5 pt-0">
+                        <div class="pt-3 border-t border-border flex items-center justify-between">
+                            <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                                Explore Apartments <i class="fas fa-arrow-right text-[10px]"></i>
+                            </span>
+                            <span class="text-[10px] uppercase font-bold text-secondary-text tracking-wider">Verified</span>
+                        </div>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-1">Studios & Condos</h3>
-                    <p class="text-xs text-secondary-text mb-3">340+ properties</p>
-                    <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-3 transition-all">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
                 </a>
+
+                <!-- Category 3: Family Homes -->
+                <a href="buy.html" class="group bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-2xl transition-all duration-300 flex flex-col justify-between category-card" data-category="family-homes for-sale">
+                    <div>
+                        <div class="relative h-48 sm:h-52 overflow-hidden bg-[#0F1F3D]">
+                            <img src="assets/category_family_homes.jpg" alt="Family Homes" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/80 via-[#0F1F3D]/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-[#0F1F3D]/80 backdrop-blur-md text-[#E0C28A] border border-[#C9A961]/40 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                                620+ Homes
+                            </span>
+                            <span class="absolute top-3 right-3 bg-emerald-500/90 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+                                For Sale
+                            </span>
+                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                                <span class="text-xs font-semibold text-gray-200">From $480K</span>
+                                <span class="text-[10px] text-[#E0C28A] font-semibold flex items-center gap-1">
+                                    <i class="fas fa-tree text-[9px]"></i> Suburbs
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary-text group-hover:text-[#C9A961] transition-colors mb-1.5">Family Homes</h3>
+                            <p class="text-xs text-secondary-text leading-relaxed">Comfortable multi-bedroom suburban residences, lush lawns, top school districts &amp; quiet parks.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <div class="pt-3 border-t border-border flex items-center justify-between">
+                            <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                                Explore Family Homes <i class="fas fa-arrow-right text-[10px]"></i>
+                            </span>
+                            <span class="text-[10px] uppercase font-bold text-secondary-text tracking-wider">Verified</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Category 4: Studios & Condos -->
+                <a href="rent.html" class="group bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-2xl transition-all duration-300 flex flex-col justify-between category-card" data-category="studios condos for-rent">
+                    <div>
+                        <div class="relative h-48 sm:h-52 overflow-hidden bg-[#0F1F3D]">
+                            <img src="assets/category_studios.jpg" alt="Studios & Condos" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/80 via-[#0F1F3D]/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-[#0F1F3D]/80 backdrop-blur-md text-[#E0C28A] border border-[#C9A961]/40 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full shadow-sm">
+                                340+ Units
+                            </span>
+                            <span class="absolute top-3 right-3 bg-[#C9A961] text-[#0F1F3D] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+                                For Rent
+                            </span>
+                            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                                <span class="text-xs font-semibold text-gray-200">From $1,650/mo</span>
+                                <span class="text-[10px] text-[#E0C28A] font-semibold flex items-center gap-1">
+                                    <i class="fas fa-couch text-[9px]"></i> Furnished
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-display text-lg font-bold text-primary-text group-hover:text-[#C9A961] transition-colors mb-1.5">Studios &amp; Condos</h3>
+                            <p class="text-xs text-secondary-text leading-relaxed">Contemporary designer lofts, open-plan studio suites &amp; modern turn-key condominiums.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <div class="pt-3 border-t border-border flex items-center justify-between">
+                            <span class="text-[#C9A961] text-xs font-bold inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+                                Explore Studios <i class="fas fa-arrow-right text-[10px]"></i>
+                            </span>
+                            <span class="text-[10px] uppercase font-bold text-secondary-text tracking-wider">Verified</span>
+                        </div>
+                    </div>
+                </a>
+
             </div>
         </div>
     </section>
@@ -816,14 +965,12 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 <!-- Agent Card 1 -->
-                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-lg transition-all duration-300">
+                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                     <div class="p-6">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
-                                <i class="fas fa-user-tie text-[#C9A961] text-2xl"></i>
-                            </div>
+                            <img src="assets/home2_agent1.png" alt="James Wilson" class="w-16 h-16 rounded-2xl object-cover object-top flex-shrink-0 shadow-md">
                             <div>
-                                <h3 class="font-display text-lg font-bold text-primary-text">James Wilson</h3>
+                                <h3 class="font-display text-lg font-bold text-primary-text">Sarah Mitchell</h3>
                                 <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961]">Senior Agent • Luxury Homes</p>
                             </div>
                         </div>
@@ -831,20 +978,20 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-star text-[#C9A961]"></i> 4.9 (210)</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-house text-[#C9A961]"></i> 340 listed</span>
                         </div>
-                        <div class="flex gap-2">
-                            <button class="flex-1 text-xs font-bold text-primary-text py-2.5 rounded-xl border border-border hover:border-[#C9A961] hover:text-[#C9A961] transition">Message</button>
-                            <a href="#" class="flex-1 book-btn text-center text-xs py-2.5 rounded-xl">Profile</a>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="contact.html?agent=Sarah+Mitchell" class="book-btn text-center text-xs py-2.5 rounded-xl font-bold inline-flex items-center justify-center gap-1"><i class="fas fa-envelope text-[10px]"></i> Contact</a>
+                            <a href="agents.html" class="btn-outline text-center text-xs py-2.5 rounded-xl font-semibold inline-flex items-center justify-center gap-1">Profile</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Agent Card 2 -->
-                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-lg transition-all duration-300">
+                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                     <div class="p-6">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
-                                <i class="fas fa-user-tie text-[#C9A961] text-2xl"></i>
-                            </div>
+                            <img src="assets/home2_agent2.png" alt="Emily Watson" class="w-16 h-16 rounded-2xl object-cover object-top flex-shrink-0 shadow-md">
                             <div>
                                 <h3 class="font-display text-lg font-bold text-primary-text">Emily Watson</h3>
                                 <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961]">Luxury Specialist</p>
@@ -854,20 +1001,20 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-star text-[#C9A961]"></i> 4.8 (185)</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-house text-[#C9A961]"></i> 265 listed</span>
                         </div>
-                        <div class="flex gap-2">
-                            <button class="flex-1 text-xs font-bold text-primary-text py-2.5 rounded-xl border border-border hover:border-[#C9A961] hover:text-[#C9A961] transition">Message</button>
-                            <a href="#" class="flex-1 book-btn text-center text-xs py-2.5 rounded-xl">Profile</a>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="contact.html?agent=Emily+Watson" class="book-btn text-center text-xs py-2.5 rounded-xl font-bold inline-flex items-center justify-center gap-1"><i class="fas fa-envelope text-[10px]"></i> Contact</a>
+                            <a href="agents.html" class="btn-outline text-center text-xs py-2.5 rounded-xl font-semibold inline-flex items-center justify-center gap-1">Profile</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Agent Card 3 -->
-                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-lg transition-all duration-300 sm:col-span-2 lg:col-span-1">
+                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 sm:col-span-2 lg:col-span-1 flex flex-col justify-between">
                     <div class="p-6">
                         <div class="flex items-center gap-4 mb-5">
-                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.4);">
-                                <i class="fas fa-user-tie text-[#C9A961] text-2xl"></i>
-                            </div>
+                            <img src="assets/home2_agent3.png" alt="Michael Park" class="w-16 h-16 rounded-2xl object-cover object-top flex-shrink-0 shadow-md">
                             <div>
                                 <h3 class="font-display text-lg font-bold text-primary-text">Michael Park</h3>
                                 <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961]">Investment Advisor</p>
@@ -877,9 +1024,11 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-star text-[#C9A961]"></i> 4.9 (240)</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-house text-[#C9A961]"></i> 410 listed</span>
                         </div>
-                        <div class="flex gap-2">
-                            <button class="flex-1 text-xs font-bold text-primary-text py-2.5 rounded-xl border border-border hover:border-[#C9A961] hover:text-[#C9A961] transition">Message</button>
-                            <a href="#" class="flex-1 book-btn text-center text-xs py-2.5 rounded-xl">Profile</a>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="contact.html?agent=Michael+Park" class="book-btn text-center text-xs py-2.5 rounded-xl font-bold inline-flex items-center justify-center gap-1"><i class="fas fa-envelope text-[10px]"></i> Contact</a>
+                            <a href="agents.html" class="btn-outline text-center text-xs py-2.5 rounded-xl font-semibold inline-flex items-center justify-center gap-1">Profile</a>
                         </div>
                     </div>
                 </div>

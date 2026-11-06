@@ -201,26 +201,51 @@
             padding-left: 1.75rem;
         }
 
-        .book-btn {
+        .book-btn, .btn-primary {
             background: linear-gradient(135deg, #C9A961, #E0C28A);
-            color: #0F1F3D;
+            color: #0F1F3D !important;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 14px -2px rgba(201, 169, 97, 0.35);
         }
-        .book-btn::before {
+        .book-btn::before, .btn-primary::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
             transition: left 0.6s ease;
         }
-        .book-btn:hover::before { left: 100%; }
-        .book-btn:hover {
+        .book-btn:hover::before, .btn-primary:hover::before { left: 100%; }
+        .book-btn:hover, .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.55);
+            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.6);
+            filter: brightness(1.03);
+        }
+
+        .btn-outline, .btn-secondary {
+            background: transparent;
+            color: var(--color-primary-text);
+            border: 1px solid var(--color-border);
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-outline:hover, .btn-secondary:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold) !important;
+            background: rgba(201, 169, 97, 0.08);
+            transform: translateY(-2px);
         }
 
         .icon-btn {
@@ -361,6 +386,7 @@
                     <a href="services.html" class="nav-link">Service</a>
                     <a href="rent.html" class="nav-link">Rent</a>
                     <a href="buy.html" class="nav-link">Buy</a>
+                    <a href="agents.html" class="nav-link">Agents</a>
                     <a href="contact.html" class="nav-link">Contact</a>
 
                     <div class="dropdown-wrapper">
@@ -426,6 +452,7 @@
                     <a href="services.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Service</a>
                     <a href="rent.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Rent</a>
                     <a href="buy.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Buy</a>
+                    <a href="agents.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Agents</a>
                     <a href="contact.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Contact</a>
 
                     <div>
@@ -466,9 +493,9 @@
         <div class="absolute inset-0">
             <img src="assets/about_hero.png"
                  alt="EstateHub team in modern office"
-                 class="w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0F1F3D]/90 via-[#0F1F3D]/75 to-[#1E3A5F]/90"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-transparent"></div>
+                 class="w-full h-full object-cover opacity-85 sm:opacity-90 transition-opacity duration-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0F1F3D]/90 via-[#0F1F3D]/55 to-[#0F1F3D]/25"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-[#0F1F3D]/30"></div>
         </div>
 
         <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
@@ -714,6 +741,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="agents.html" class="book-btn px-8 py-3.5 rounded-full text-xs font-bold inline-flex items-center gap-2 shadow-md">
+                    Meet Our Entire 150+ Agent Team <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
             </div>
         </div>
     </section>

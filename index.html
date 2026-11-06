@@ -201,26 +201,70 @@
             padding-left: 1.75rem;
         }
 
-        .book-btn {
+        .book-btn, .btn-primary {
             background: linear-gradient(135deg, #C9A961, #E0C28A);
-            color: #0F1F3D;
+            color: #0F1F3D !important;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 14px -2px rgba(201, 169, 97, 0.35);
         }
-        .book-btn::before {
+        .book-btn::before, .btn-primary::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
             transition: left 0.6s ease;
         }
-        .book-btn:hover::before { left: 100%; }
-        .book-btn:hover {
+        .book-btn:hover::before, .btn-primary:hover::before { left: 100%; }
+        .book-btn:hover, .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.55);
+            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.6);
+            filter: brightness(1.03);
+        }
+
+        .btn-outline, .btn-secondary {
+            background: transparent;
+            color: var(--color-primary-text);
+            border: 1px solid var(--color-border);
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-outline:hover, .btn-secondary:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold) !important;
+            background: rgba(201, 169, 97, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold-subtle {
+            background: rgba(201, 169, 97, 0.12);
+            color: var(--color-gold);
+            border: 1px solid rgba(201, 169, 97, 0.25);
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .btn-gold-subtle:hover {
+            background: linear-gradient(135deg, #C9A961, #E0C28A);
+            color: #0F1F3D !important;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px rgba(201, 169, 97, 0.4);
         }
 
         .icon-btn {
@@ -290,6 +334,19 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 40px -18px rgba(201, 169, 97, 0.3);
         }
+        .feature-tile-media { padding: 0; overflow: hidden; }
+        .feature-tile-media .feature-media {
+            position: relative;
+            height: 11rem;
+            overflow: hidden;
+        }
+        .feature-tile-media .feature-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .feature-tile-media:hover .feature-media img { transform: scale(1.06); }
 
         /* Marquee */
         .marquee-track {
@@ -377,6 +434,7 @@
                     <a href="services.html" class="nav-link">Service</a>
                     <a href="rent.html" class="nav-link">Rent</a>
                     <a href="buy.html" class="nav-link">Buy</a>
+                    <a href="agents.html" class="nav-link">Agents</a>
                     <a href="contact.html" class="nav-link">Contact</a>
 
                     <div class="dropdown-wrapper">
@@ -442,6 +500,7 @@
                     <a href="services.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Service</a>
                     <a href="rent.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Rent</a>
                     <a href="buy.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Buy</a>
+                    <a href="agents.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Agents</a>
                     <a href="contact.html" class="py-3 px-3 rounded-xl font-medium text-primary-text hover:bg-hover hover:text-[#C9A961] transition">Contact</a>
 
                     <div>
@@ -482,9 +541,9 @@
         <div class="absolute inset-0">
             <img src="assets/indexb.jpg"
                  alt="Luxury modern home"
-                 class="w-full h-full object-cover opacity-35">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0F1F3D]/90 via-[#0F1F3D]/70 to-[#1E3A5F]/85"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-transparent"></div>
+                 class="w-full h-full object-cover opacity-100">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0F1F3D]/78 via-[#0F1F3D]/28 to-[#0F1F3D]/5"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/45 via-transparent to-[#0F1F3D]/28"></div>
         </div>
 
         <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full">
@@ -501,32 +560,61 @@
                     With Confidence.
                 </h1>
 
-                <p class="text-gray-300 text-sm sm:text-base lg:text-lg xl:text-xl max-w-2xl leading-relaxed mb-8 sm:mb-10 font-light">
+                <p class="text-gray-100 text-sm sm:text-base lg:text-lg xl:text-xl max-w-2xl leading-relaxed mb-8 sm:mb-10 font-light drop-shadow-sm">
                     From cozy apartments to luxury estates — EstateHub connects you with trusted agents and verified listings across the country.
                 </p>
 
+                <!-- Quick Intent Switcher -->
+                <div class="inline-flex items-center p-1 bg-white/10 backdrop-blur-md rounded-full border border-white/15 mb-4 gap-1">
+                    <a href="buy.html" class="px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold bg-[#C9A961] text-[#0F1F3D] inline-flex items-center gap-1.5 shadow-sm transition hover:brightness-105">
+                        <i class="fas fa-house"></i> Buy
+                    </a>
+                    <a href="rent.html" class="px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-semibold text-white hover:text-[#C9A961] inline-flex items-center gap-1.5 transition">
+                        <i class="fas fa-key"></i> Rent
+                    </a>
+                    <a href="agents.html" class="px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-semibold text-white hover:text-[#C9A961] inline-flex items-center gap-1.5 transition">
+                        <i class="fas fa-user-tie"></i> Find Agent
+                    </a>
+                    <a href="#services-showcase" class="px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-semibold text-white hover:text-[#C9A961] inline-flex items-center gap-1.5 transition">
+                        <i class="fas fa-layer-group"></i> Services
+                    </a>
+                </div>
+
                 <!-- Search Box -->
-                <div class="search-box max-w-2xl mb-8">
+                <form action="buy.html" method="GET" class="search-box max-w-2xl mb-6">
                     <i class="fas fa-search text-[#C9A961] ml-2 sm:ml-3 text-sm"></i>
-                    <input type="text" class="search-input" placeholder="Search city or property...">
-                    <button class="book-btn px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm whitespace-nowrap">
-                        <i class="fas fa-search mr-1.5 hidden sm:inline"></i> Search
+                    <input type="text" name="search" class="search-input" placeholder="Search by city, neighborhood, or property title...">
+                    <button type="submit" class="book-btn px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm whitespace-nowrap">
+                        <i class="fas fa-search mr-1.5 hidden sm:inline"></i> Search Properties
                     </button>
+                </form>
+
+                <!-- Quick Action CTA Row -->
+                <div class="flex flex-wrap items-center gap-3 mb-8 sm:mb-10">
+                    <a href="buy.html" class="book-btn px-7 sm:px-9 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-bold inline-flex items-center gap-2.5 shadow-2xl ring-2 ring-[#E0C28A]/50">
+                        <i class="fas fa-compass text-base"></i> Explore Properties <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#services-showcase" class="btn-outline px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 text-white border-white/25 hover:border-[#C9A961] hover:text-[#C9A961]">
+                        <i class="fas fa-layer-group"></i> Explore Services
+                    </a>
+                    <a href="agents.html" class="btn-outline px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold inline-flex items-center gap-2 text-white border-white/25 hover:border-[#C9A961] hover:text-[#C9A961]">
+                        <i class="fas fa-user-tie"></i> Contact Top Agents
+                    </a>
                 </div>
 
                 <!-- Stats -->
                 <div class="grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl">
                     <div>
                         <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">2.5K<span class="text-[#C9A961]">+</span></p>
-                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Active Listings</p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-200 mt-1">Active Listings</p>
                     </div>
                     <div>
                         <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">150<span class="text-[#C9A961]">+</span></p>
-                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Expert Agents</p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-200 mt-1">Expert Agents</p>
                     </div>
                     <div>
                         <p class="font-display text-2xl sm:text-3xl md:text-4xl text-white font-bold">4.9<span class="text-[#C9A961]">★</span></p>
-                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-400 mt-1">Client Rating</p>
+                        <p class="text-[9px] sm:text-xs uppercase tracking-widest text-gray-200 mt-1">Client Rating</p>
                     </div>
                 </div>
             </div>
@@ -607,9 +695,20 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 4 Baths</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 4,200 sqft</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$4.85M</p>
-                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider text-secondary-text block">Guide Price</span>
+                                <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$4.85M</p>
+                            </div>
+                            <span class="text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">Available</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-3 border-t border-border">
+                            <a href="buy.html" class="book-btn py-2 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1">
+                                View Details <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="contact.html?property=Beverly+Hills+Modern+Villa" class="btn-outline py-2 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                <i class="fas fa-envelope text-[10px]"></i> Contact Agent
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -633,9 +732,20 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 3 Baths</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 2,100 sqft</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$8,500<span class="text-xs font-normal text-secondary-text">/mo</span></p>
-                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider text-secondary-text block">Monthly Rent</span>
+                                <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$8,500<span class="text-xs font-normal text-secondary-text">/mo</span></p>
+                            </div>
+                            <span class="text-[10px] font-semibold bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full">Ready to Move</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-3 border-t border-border">
+                            <a href="rent.html" class="book-btn py-2 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1">
+                                View Details <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="contact.html?property=Downtown+Skyline+Penthouse" class="btn-outline py-2 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                <i class="fas fa-envelope text-[10px]"></i> Contact Agent
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -659,9 +769,20 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 3 Baths</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 3,100 sqft</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$780K</p>
-                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider text-secondary-text block">Guide Price</span>
+                                <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$780K</p>
+                            </div>
+                            <span class="text-[10px] font-semibold bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full">New Listing</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-3 border-t border-border">
+                            <a href="buy.html" class="book-btn py-2 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1">
+                                View Details <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="contact.html?property=Suburban+Family+Retreat" class="btn-outline py-2 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                <i class="fas fa-envelope text-[10px]"></i> Contact Agent
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -685,7 +806,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                 <a href="buy.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
                     <img src="assets/index4.jpg" alt="Luxury homes" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/70 via-[#0F1F3D]/5 to-transparent"></div>
                     <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
                         <i class="fas fa-building text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
                         <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
@@ -696,7 +817,7 @@
                 </a>
                 <a href="rent.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
                     <img src="assets/index5.jpg" alt="Apartments" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/70 via-[#0F1F3D]/5 to-transparent"></div>
                     <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
                         <i class="fas fa-city text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
                         <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
@@ -707,7 +828,7 @@
                 </a>
                 <a href="buy.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
                     <img src="assets/index6.jpg" alt="Family houses" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/70 via-[#0F1F3D]/5 to-transparent"></div>
                     <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
                         <i class="fas fa-house text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
                         <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
@@ -718,7 +839,7 @@
                 </a>
                 <a href="rent.html" class="group relative h-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg">
                     <img src="assets/index7.jpg" alt="Studios" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/95 via-[#0F1F3D]/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/70 via-[#0F1F3D]/5 to-transparent"></div>
                     <div class="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5">
                         <i class="fas fa-door-open text-[#C9A961] text-xl sm:text-2xl mb-2"></i>
                         <div class="min-h-[3.5rem] sm:min-h-[4.5rem] flex flex-col justify-end">
@@ -765,7 +886,13 @@
                             <span><i class="fas fa-bath text-[#C9A961]"></i> 2</span>
                             <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 1,800 sqft</span>
                         </div>
-                        <p class="font-display text-lg font-bold text-[#C9A961]">$520K</p>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-border mt-2">
+                            <p class="font-display text-lg font-bold text-[#C9A961]">$520K</p>
+                            <div class="flex items-center gap-1.5">
+                                <a href="buy.html" class="book-btn px-2.5 py-1 rounded-lg text-[11px] font-bold">Details</a>
+                                <a href="contact.html?property=Riverside+Cottage" class="btn-outline px-2 py-1 rounded-lg text-[11px] font-semibold text-secondary-text hover:text-[#C9A961]" title="Contact Agent"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -785,7 +912,13 @@
                             <span><i class="fas fa-bath text-[#C9A961]"></i> 1</span>
                             <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 720 sqft</span>
                         </div>
-                        <p class="font-display text-lg font-bold text-[#C9A961]">$2,400<span class="text-[10px] font-normal text-secondary-text">/mo</span></p>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-border mt-2">
+                            <p class="font-display text-lg font-bold text-[#C9A961]">$2,400<span class="text-[10px] font-normal text-secondary-text">/mo</span></p>
+                            <div class="flex items-center gap-1.5">
+                                <a href="rent.html" class="book-btn px-2.5 py-1 rounded-lg text-[11px] font-bold">Details</a>
+                                <a href="contact.html?property=City+Loft+Studio" class="btn-outline px-2 py-1 rounded-lg text-[11px] font-semibold text-secondary-text hover:text-[#C9A961]" title="Contact Agent"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -805,7 +938,13 @@
                             <span><i class="fas fa-bath text-[#C9A961]"></i> 4</span>
                             <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 4,500 sqft</span>
                         </div>
-                        <p class="font-display text-lg font-bold text-[#C9A961]">$2.1M</p>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-border mt-2">
+                            <p class="font-display text-lg font-bold text-[#C9A961]">$2.1M</p>
+                            <div class="flex items-center gap-1.5">
+                                <a href="buy.html" class="book-btn px-2.5 py-1 rounded-lg text-[11px] font-bold">Details</a>
+                                <a href="contact.html?property=Hillside+Estate" class="btn-outline px-2 py-1 rounded-lg text-[11px] font-semibold text-secondary-text hover:text-[#C9A961]" title="Contact Agent"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -825,13 +964,261 @@
                             <span><i class="fas fa-bath text-[#C9A961]"></i> 2</span>
                             <span><i class="fas fa-ruler-combined text-[#C9A961]"></i> 1,400 sqft</span>
                         </div>
-                        <p class="font-display text-lg font-bold text-[#C9A961]">$4,800<span class="text-[10px] font-normal text-secondary-text">/mo</span></p>
+                        <div class="flex items-center justify-between pt-2.5 border-t border-border mt-2">
+                            <p class="font-display text-lg font-bold text-[#C9A961]">$4,800<span class="text-[10px] font-normal text-secondary-text">/mo</span></p>
+                            <div class="flex items-center gap-1.5">
+                                <a href="rent.html" class="book-btn px-2.5 py-1 rounded-lg text-[11px] font-bold">Details</a>
+                                <a href="contact.html?property=Beachside+Condo" class="btn-outline px-2 py-1 rounded-lg text-[11px] font-semibold text-secondary-text hover:text-[#C9A961]" title="Contact Agent"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+
+    <!-- ============================================================
+         SECTION 5 • EXPLORE SERVICES & MEET TRUSTED AGENTS
+    ============================================================ -->
+    <!-- 5A: Services Showcase -->
+    <section id="services-showcase" class="section-pad bg-hover transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-14">
+                <div class="max-w-2xl">
+                    <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Our Full Suite</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-text mt-3 mb-3 font-bold">
+                        Explore Our <span class="text-gradient-gold italic">Services</span>
+                    </h2>
+                    <p class="text-secondary-text text-sm sm:text-base leading-relaxed">
+                        End-to-end real estate expertise designed for buyers, sellers, landlords, and investors.
+                    </p>
+                </div>
+                <a href="services.html" class="book-btn px-6 py-3 rounded-full text-xs font-bold inline-flex items-center gap-2 whitespace-nowrap self-start sm:self-auto">
+                    View All Services <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1: Buying -->
+                <div class="bg-card border border-border rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition duration-300" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.35);">
+                            <i class="fas fa-house-chimney text-[#C9A961] text-xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1 block">Acquisition</span>
+                        <h3 class="font-display text-xl font-bold text-primary-text mb-3">Property Buying</h3>
+                        <p class="text-xs sm:text-sm text-secondary-text leading-relaxed mb-6">
+                            Tailored property searches, private escorted tours, contract negotiations, and legal title verification.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-secondary-text mb-6">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Zero buyer agency fees</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> 100% verified listings</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Mortgage pre-approval aid</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-border">
+                        <a href="services.html#buying" class="book-btn w-full py-2.5 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1.5">
+                            Explore Buying <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 2: Selling -->
+                <div class="bg-card border border-border rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition duration-300" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.35);">
+                            <i class="fas fa-tag text-[#C9A961] text-xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1 block">Valuation & Sales</span>
+                        <h3 class="font-display text-xl font-bold text-primary-text mb-3">Selling & Listing</h3>
+                        <p class="text-xs sm:text-sm text-secondary-text leading-relaxed mb-6">
+                            Maximize your property value with free comparative valuation, 4K digital media, and targeted global reach.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-secondary-text mb-6">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Free instant valuation</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Cinematic video & staging</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> 24-day avg. sales cycle</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-border">
+                        <a href="services.html#selling" class="book-btn w-full py-2.5 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1.5">
+                            Explore Selling <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3: Rentals -->
+                <div class="bg-card border border-border rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition duration-300" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.35);">
+                            <i class="fas fa-key text-[#C9A961] text-xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1 block">Leasing</span>
+                        <h3 class="font-display text-xl font-bold text-primary-text mb-3">Rental Management</h3>
+                        <p class="text-xs sm:text-sm text-secondary-text leading-relaxed mb-6">
+                            Hassle-free tenancy for landlords and premium homes for renters with transparent terms and rapid placement.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-secondary-text mb-6">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Rigorous tenant screening</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Automated rent transfers</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> 24/7 maintenance dispatch</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-border">
+                        <a href="services.html#rental" class="book-btn w-full py-2.5 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1.5">
+                            Explore Rentals <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 4: Site Visit & Advisory -->
+                <div class="bg-card border border-border rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition duration-300" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.35);">
+                            <i class="fas fa-calendar-check text-[#C9A961] text-xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1 block">Tours & Strategy</span>
+                        <h3 class="font-display text-xl font-bold text-primary-text mb-3">Site Visit Booking</h3>
+                        <p class="text-xs sm:text-sm text-secondary-text leading-relaxed mb-6">
+                            Schedule in-person private viewings or immersive virtual walk-throughs guided by our top market consultants.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-secondary-text mb-6">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Dedicated agent companion</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Comprehensive ROI analysis</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-[#C9A961] text-[11px]"></i> Flexible 7-day scheduling</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-border">
+                        <a href="services.html#site-visit" class="book-btn w-full py-2.5 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1.5">
+                            Book Site Visit <i class="fas fa-calendar-alt text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5B: Featured Agents Showcase -->
+    <section id="agents-showcase" class="section-pad bg-background transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-14">
+                <div class="max-w-2xl">
+                    <span class="text-[#C9A961] text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">Local Expertise</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-text mt-3 mb-3 font-bold">
+                        Meet Our <span class="text-gradient-gold italic">Top Agents</span>
+                    </h2>
+                    <p class="text-secondary-text text-sm sm:text-base leading-relaxed">
+                        Work with vetted real estate professionals who bring deep market intelligence and tailored representation.
+                    </p>
+                </div>
+                <a href="agents.html" class="btn-outline px-6 py-3 rounded-full text-xs font-bold inline-flex items-center gap-2 whitespace-nowrap self-start sm:self-auto">
+                    View All 150+ Agents <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Agent 1 -->
+                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <div class="relative h-64 overflow-hidden bg-[#0F1F3D]">
+                        <img src="assets/home2_agent1.png" alt="Sarah Mitchell" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-gradient-to-r from-[#C9A961] to-[#E0C28A] text-[#0F1F3D] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">Top Producer</span>
+                        <span class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-full"><i class="fas fa-check-circle text-[#C9A961] mr-1"></i> Verified</span>
+                        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                            <span class="text-xs font-semibold text-gray-200">12 Years Experience</span>
+                            <span class="text-xs text-[#E0C28A] font-bold"><i class="fas fa-star text-[#C9A961]"></i> 4.9 (210)</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-1">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1">Senior Luxury Agent</p>
+                            <h3 class="font-display text-xl font-bold text-primary-text mb-2">Sarah Mitchell</h3>
+                            <p class="text-xs text-secondary-text mb-4">Specializing in high-end residential estates and private buyer representation in Beverly Hills & Malibu.</p>
+                            <div class="flex items-center gap-3 text-xs text-secondary-text pb-4 mb-4 border-b border-border">
+                                <span class="flex items-center gap-1.5"><i class="fas fa-house text-[#C9A961]"></i> 340+ Closed</span>
+                                <span class="flex items-center gap-1.5"><i class="fas fa-trophy text-[#C9A961]"></i> Top 1% Nationally</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="contact.html?agent=Sarah+Mitchell" class="book-btn py-2.5 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fas fa-envelope text-[11px]"></i> Contact Agent
+                            </a>
+                            <a href="agents.html" class="btn-outline py-2.5 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1.5">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent 2 -->
+                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <div class="relative h-64 overflow-hidden bg-[#0F1F3D]">
+                        <img src="assets/home2_agent3.png" alt="David Chen" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-gradient-to-r from-[#C9A961] to-[#E0C28A] text-[#0F1F3D] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">Commercial Lead</span>
+                        <span class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-full"><i class="fas fa-check-circle text-[#C9A961] mr-1"></i> Verified</span>
+                        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                            <span class="text-xs font-semibold text-gray-200">10 Years Experience</span>
+                            <span class="text-xs text-[#E0C28A] font-bold"><i class="fas fa-star text-[#C9A961]"></i> 4.8 (185)</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-1">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1">Commercial & Investment Specialist</p>
+                            <h3 class="font-display text-xl font-bold text-primary-text mb-2">David Chen</h3>
+                            <p class="text-xs text-secondary-text mb-4">Advising private investors, syndicates, and corporate clients across New York commercial & luxury markets.</p>
+                            <div class="flex items-center gap-3 text-xs text-secondary-text pb-4 mb-4 border-b border-border">
+                                <span class="flex items-center gap-1.5"><i class="fas fa-building text-[#C9A961]"></i> 290+ Closed</span>
+                                <span class="flex items-center gap-1.5"><i class="fas fa-chart-line text-[#C9A961]"></i> $210M Volume</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="contact.html?agent=David+Chen" class="book-btn py-2.5 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fas fa-envelope text-[11px]"></i> Contact Agent
+                            </a>
+                            <a href="agents.html" class="btn-outline py-2.5 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1.5">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent 3 -->
+                <div class="bg-card border border-border rounded-2xl overflow-hidden hover:border-[#C9A961] hover:shadow-xl transition-all duration-300 flex flex-col group sm:col-span-2 lg:col-span-1">
+                    <div class="relative h-64 overflow-hidden bg-[#0F1F3D]">
+                        <img src="assets/home2_agent4.png" alt="Amara Okafor" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/80 via-transparent to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-gradient-to-r from-[#C9A961] to-[#E0C28A] text-[#0F1F3D] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">Client Choice</span>
+                        <span class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-full"><i class="fas fa-check-circle text-[#C9A961] mr-1"></i> Verified</span>
+                        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                            <span class="text-xs font-semibold text-gray-200">14 Years Experience</span>
+                            <span class="text-xs text-[#E0C28A] font-bold"><i class="fas fa-star text-[#C9A961]"></i> 4.9 (240)</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-1">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-widest font-bold text-[#C9A961] mb-1">Residential & Relocation Expert</p>
+                            <h3 class="font-display text-xl font-bold text-primary-text mb-2">Amara Okafor</h3>
+                            <p class="text-xs text-secondary-text mb-4">Dedicated to family home acquisitions, modern suburban estates, and white-glove relocation services in Austin.</p>
+                            <div class="flex items-center gap-3 text-xs text-secondary-text pb-4 mb-4 border-b border-border">
+                                <span class="flex items-center gap-1.5"><i class="fas fa-house text-[#C9A961]"></i> 410+ Closed</span>
+                                <span class="flex items-center gap-1.5"><i class="fas fa-heart text-[#C9A961]"></i> 99% Satisfaction</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="contact.html?agent=Amara+Okafor" class="book-btn py-2.5 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fas fa-envelope text-[11px]"></i> Contact Agent
+                            </a>
+                            <a href="agents.html" class="btn-outline py-2.5 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1.5">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ============================================================
          SECTION 6 • WHY CHOOSE US
@@ -847,36 +1234,52 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-                <div class="feature-tile">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-shield-halved text-[#C9A961] text-xl"></i>
+                <div class="feature-tile feature-tile-media">
+                    <div class="feature-media">
+                        <img src="assets/index1.jpg" alt="Verified modern villa listing">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/55 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-4 text-[10px] font-bold uppercase tracking-widest text-white px-2.5 py-1 rounded-full backdrop-blur-sm" style="background:rgba(15,31,61,0.7);">Verified</span>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Verified Listings</h3>
-                    <p class="text-sm text-secondary-text leading-relaxed">Every property is inspected and legally verified before it goes live.</p>
+                    <div class="p-5 sm:p-6">
+                        <h3 class="font-display text-lg font-bold text-primary-text mb-2">Verified Listings</h3>
+                        <p class="text-sm text-secondary-text leading-relaxed">Every property is inspected and legally verified before it goes live.</p>
+                    </div>
                 </div>
 
-                <div class="feature-tile">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-user-tie text-[#C9A961] text-xl"></i>
+                <div class="feature-tile feature-tile-media">
+                    <div class="feature-media">
+                        <img src="assets/about_meeting.png" alt="Trusted EstateHub agents meeting with clients">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/55 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-4 text-[10px] font-bold uppercase tracking-widest text-white px-2.5 py-1 rounded-full backdrop-blur-sm" style="background:rgba(15,31,61,0.7);">Certified</span>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Trusted Agents</h3>
-                    <p class="text-sm text-secondary-text leading-relaxed">Certified professionals with years of local market expertise.</p>
+                    <div class="p-5 sm:p-6">
+                        <h3 class="font-display text-lg font-bold text-primary-text mb-2">Trusted Agents</h3>
+                        <p class="text-sm text-secondary-text leading-relaxed">Certified professionals with years of local market expertise.</p>
+                    </div>
                 </div>
 
-                <div class="feature-tile">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-file-signature text-[#C9A961] text-xl"></i>
+                <div class="feature-tile feature-tile-media">
+                    <div class="feature-media">
+                        <img src="assets/about_office.png" alt="EstateHub legal and documentation support office">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/55 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-4 text-[10px] font-bold uppercase tracking-widest text-white px-2.5 py-1 rounded-full backdrop-blur-sm" style="background:rgba(15,31,61,0.7);">Protected</span>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Legal Support</h3>
-                    <p class="text-sm text-secondary-text leading-relaxed">Contracts, inspections, and paperwork handled by experts.</p>
+                    <div class="p-5 sm:p-6">
+                        <h3 class="font-display text-lg font-bold text-primary-text mb-2">Legal Support</h3>
+                        <p class="text-sm text-secondary-text leading-relaxed">Contracts, inspections, and paperwork handled by experts.</p>
+                    </div>
                 </div>
 
-                <div class="feature-tile">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,#0F1F3D,#1E3A5F);border:1px solid rgba(201,169,97,0.3);">
-                        <i class="fas fa-percent text-[#C9A961] text-xl"></i>
+                <div class="feature-tile feature-tile-media">
+                    <div class="feature-media">
+                        <img src="assets/s3.jpg" alt="Mortgage and property financing consultation">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D]/55 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-3 left-4 text-[10px] font-bold uppercase tracking-widest text-white px-2.5 py-1 rounded-full backdrop-blur-sm" style="background:rgba(15,31,61,0.7);">Pre-Approved</span>
                     </div>
-                    <h3 class="font-display text-lg font-bold text-primary-text mb-2">Mortgage Guidance</h3>
-                    <p class="text-sm text-secondary-text leading-relaxed">Compare loan options and get pre-approved with confidence.</p>
+                    <div class="p-5 sm:p-6">
+                        <h3 class="font-display text-lg font-bold text-primary-text mb-2">Mortgage Guidance</h3>
+                        <p class="text-sm text-secondary-text leading-relaxed">Compare loan options and get pre-approved with confidence.</p>
+                    </div>
                 </div>
             </div>
 

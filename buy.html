@@ -201,26 +201,51 @@
             padding-left: 1.75rem;
         }
 
-        .book-btn {
+        .book-btn, .btn-primary {
             background: linear-gradient(135deg, #C9A961, #E0C28A);
-            color: #0F1F3D;
+            color: #0F1F3D !important;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 14px -2px rgba(201, 169, 97, 0.35);
         }
-        .book-btn::before {
+        .book-btn::before, .btn-primary::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
             transition: left 0.6s ease;
         }
-        .book-btn:hover::before { left: 100%; }
-        .book-btn:hover {
+        .book-btn:hover::before, .btn-primary:hover::before { left: 100%; }
+        .book-btn:hover, .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.55);
+            box-shadow: 0 12px 30px -8px rgba(201, 169, 97, 0.6);
+            filter: brightness(1.03);
+        }
+
+        .btn-outline, .btn-secondary {
+            background: transparent;
+            color: var(--color-primary-text);
+            border: 1px solid var(--color-border);
+            font-weight: 600;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-outline:hover, .btn-secondary:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold) !important;
+            background: rgba(201, 169, 97, 0.08);
+            transform: translateY(-2px);
         }
 
         .icon-btn {
@@ -519,9 +544,9 @@
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
                  alt="Homes for sale"
-                 class="w-full h-full object-cover opacity-35">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#0F1F3D]/90 via-[#0F1F3D]/70 to-[#1E3A5F]/85"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-transparent"></div>
+                 class="w-full h-full object-cover opacity-85 sm:opacity-90 transition-opacity duration-700">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0F1F3D]/90 via-[#0F1F3D]/55 to-[#0F1F3D]/25"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F1F3D] via-transparent to-[#0F1F3D]/30"></div>
         </div>
 
         <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full">
@@ -715,9 +740,19 @@
                                     <span class="flex items-center gap-1"><i class="fas fa-bath text-[#C9A961]"></i> 4</span>
                                     <span class="flex items-center gap-1"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 4,200 sqft</span>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <p class="font-display text-lg font-bold text-[#C9A961]">$4.85M</p>
-                                    <a href="#" class="text-[11px] font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                                <div class="pt-2 border-t border-border mt-2">
+                                    <div class="flex items-baseline justify-between mb-2">
+                                        <p class="font-display text-lg font-bold text-[#C9A961]">$4.85M</p>
+                                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Verified</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <a href="contact.html?subject=Buying+a+property&price=4.85M" class="book-btn py-1.5 px-2 rounded-lg text-[11px] font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                            <i class="fas fa-calendar-check text-[9px]"></i> Tour / Inquire
+                                        </a>
+                                        <a href="agents.html" class="btn-outline py-1.5 px-2 rounded-lg text-[11px] font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                            <i class="fas fa-user-tie text-[9px]"></i> Agent
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -742,9 +777,19 @@
                                     <span class="flex items-center gap-1"><i class="fas fa-bath text-[#C9A961]"></i> 3</span>
                                     <span class="flex items-center gap-1"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 2,100 sqft</span>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <p class="font-display text-lg font-bold text-[#C9A961]">$3.2M</p>
-                                    <a href="#" class="text-[11px] font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                                <div class="pt-2 border-t border-border mt-2">
+                                    <div class="flex items-baseline justify-between mb-2">
+                                        <p class="font-display text-lg font-bold text-[#C9A961]">$3.2M</p>
+                                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Verified</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <a href="contact.html?subject=Buying+a+property&price=3.2M" class="book-btn py-1.5 px-2 rounded-lg text-[11px] font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                            <i class="fas fa-calendar-check text-[9px]"></i> Tour / Inquire
+                                        </a>
+                                        <a href="agents.html" class="btn-outline py-1.5 px-2 rounded-lg text-[11px] font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                            <i class="fas fa-user-tie text-[9px]"></i> Agent
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -769,9 +814,19 @@
                                     <span class="flex items-center gap-1"><i class="fas fa-bath text-[#C9A961]"></i> 3</span>
                                     <span class="flex items-center gap-1"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 3,100 sqft</span>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <p class="font-display text-lg font-bold text-[#C9A961]">$780K</p>
-                                    <a href="#" class="text-[11px] font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                                <div class="pt-2 border-t border-border mt-2">
+                                    <div class="flex items-baseline justify-between mb-2">
+                                        <p class="font-display text-lg font-bold text-[#C9A961]">$780K</p>
+                                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Verified</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <a href="contact.html?subject=Buying+a+property&price=780K" class="book-btn py-1.5 px-2 rounded-lg text-[11px] font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                            <i class="fas fa-calendar-check text-[9px]"></i> Tour / Inquire
+                                        </a>
+                                        <a href="agents.html" class="btn-outline py-1.5 px-2 rounded-lg text-[11px] font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                            <i class="fas fa-user-tie text-[9px]"></i> Agent
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -796,9 +851,19 @@
                                     <span class="flex items-center gap-1"><i class="fas fa-bath text-[#C9A961]"></i> 2</span>
                                     <span class="flex items-center gap-1"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 1,800 sqft</span>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <p class="font-display text-lg font-bold text-[#C9A961]">$520K</p>
-                                    <a href="#" class="text-[11px] font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                                <div class="pt-2 border-t border-border mt-2">
+                                    <div class="flex items-baseline justify-between mb-2">
+                                        <p class="font-display text-lg font-bold text-[#C9A961]">$520K</p>
+                                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Verified</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <a href="contact.html?subject=Buying+a+property&price=520K" class="book-btn py-1.5 px-2 rounded-lg text-[11px] font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                            <i class="fas fa-calendar-check text-[9px]"></i> Tour / Inquire
+                                        </a>
+                                        <a href="agents.html" class="btn-outline py-1.5 px-2 rounded-lg text-[11px] font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                            <i class="fas fa-user-tie text-[9px]"></i> Agent
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -823,9 +888,19 @@
                                     <span class="flex items-center gap-1"><i class="fas fa-bath text-[#C9A961]"></i> 4</span>
                                     <span class="flex items-center gap-1"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 4,500 sqft</span>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <p class="font-display text-lg font-bold text-[#C9A961]">$2.1M</p>
-                                    <a href="#" class="text-[11px] font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                                <div class="pt-2 border-t border-border mt-2">
+                                    <div class="flex items-baseline justify-between mb-2">
+                                        <p class="font-display text-lg font-bold text-[#C9A961]">$2.1M</p>
+                                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Verified</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <a href="contact.html?subject=Buying+a+property&price=2.1M" class="book-btn py-1.5 px-2 rounded-lg text-[11px] font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                            <i class="fas fa-calendar-check text-[9px]"></i> Tour / Inquire
+                                        </a>
+                                        <a href="agents.html" class="btn-outline py-1.5 px-2 rounded-lg text-[11px] font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                            <i class="fas fa-user-tie text-[9px]"></i> Agent
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -850,9 +925,19 @@
                                     <span class="flex items-center gap-1"><i class="fas fa-bath text-[#C9A961]"></i> 2</span>
                                     <span class="flex items-center gap-1"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 1,400 sqft</span>
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <p class="font-display text-lg font-bold text-[#C9A961]">$1.15M</p>
-                                    <a href="#" class="text-[11px] font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                                <div class="pt-2 border-t border-border mt-2">
+                                    <div class="flex items-baseline justify-between mb-2">
+                                        <p class="font-display text-lg font-bold text-[#C9A961]">$1.15M</p>
+                                        <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Verified</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-1.5">
+                                        <a href="contact.html?subject=Buying+a+property&price=1.15M" class="book-btn py-1.5 px-2 rounded-lg text-[11px] font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                            <i class="fas fa-calendar-check text-[9px]"></i> Tour / Inquire
+                                        </a>
+                                        <a href="agents.html" class="btn-outline py-1.5 px-2 rounded-lg text-[11px] font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                            <i class="fas fa-user-tie text-[9px]"></i> Agent
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -906,9 +991,19 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 5 Baths</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 6,200 sqft</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$8.9M</p>
-                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        <div class="pt-2 border-t border-border mt-2">
+                            <div class="flex items-baseline justify-between mb-2">
+                                <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$8.9M</p>
+                                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Featured</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="contact.html?property=Modern+Hillside+Villa" class="book-btn py-2 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                    Inquire Now
+                                </a>
+                                <a href="agents.html" class="btn-outline py-2 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                    <i class="fas fa-user-tie text-[10px]"></i> Agent
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -929,9 +1024,19 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 2 Baths</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 1,500 sqft</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$2.4M</p>
-                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        <div class="pt-2 border-t border-border mt-2">
+                            <div class="flex items-baseline justify-between mb-2">
+                                <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$2.4M</p>
+                                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Featured</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="contact.html?property=Central+Park+View+Apartment" class="book-btn py-2 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                    Inquire Now
+                                </a>
+                                <a href="agents.html" class="btn-outline py-2 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                    <i class="fas fa-user-tie text-[10px]"></i> Agent
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -952,9 +1057,19 @@
                             <span class="flex items-center gap-1.5"><i class="fas fa-bath text-[#C9A961]"></i> 3 Baths</span>
                             <span class="flex items-center gap-1.5"><i class="fas fa-ruler-combined text-[#C9A961]"></i> 2,800 sqft</span>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$1.35M</p>
-                            <a href="#" class="text-xs font-bold text-primary-text hover:text-[#C9A961] transition">View →</a>
+                        <div class="pt-2 border-t border-border mt-2">
+                            <div class="flex items-baseline justify-between mb-2">
+                                <p class="font-display text-xl sm:text-2xl font-bold text-[#C9A961]">$1.35M</p>
+                                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Featured</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="contact.html?property=Garden+Grove+Family+Home" class="book-btn py-2 px-3 rounded-xl text-xs font-bold text-center inline-flex items-center justify-center gap-1 shadow-sm">
+                                    Inquire Now
+                                </a>
+                                <a href="agents.html" class="btn-outline py-2 px-3 rounded-xl text-xs font-semibold text-center inline-flex items-center justify-center gap-1 hover:text-[#C9A961]">
+                                    <i class="fas fa-user-tie text-[10px]"></i> Agent
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
